@@ -12,15 +12,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/tvSapaan"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
             android:text="Selamat Malam, Anggun"
-            android:textSize="24sp"
-            android:paddingTop="20dp"
-            android:layout_gravity="center"/>
-
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvTanggal"
@@ -29,7 +29,7 @@
             android:text="Tanggal Hari Ini"
             android:textSize="15sp"
             android:textAlignment="textEnd"
-            android:layout_margin="15dp" />
+            android:layout_margin="20dp" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -87,7 +87,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/img"
+                            android:src="@drawable/img_9"
                             android:layout_gravity="center"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -104,12 +104,12 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/img"
+                            android:src="@drawable/img_10"
                             android:layout_gravity="center"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Transaksi"
+                            android:text="Laporan"
                             android:layout_gravity="center"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -144,14 +144,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_11"
                         android:layout_gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Akun"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
@@ -176,14 +176,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_14"
                         android:layout_gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Produk"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
@@ -206,14 +206,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_13"
                         android:layout_gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Kategori"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
@@ -249,14 +249,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_2"
                         android:layout_gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Pegawai"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
@@ -281,14 +281,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img"
+                        android:src="@drawable/img_7"
                         android:layout_gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Cabang"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
@@ -318,7 +318,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transaksi"
+                        android:text="Printer"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"/>
                 </LinearLayout>
