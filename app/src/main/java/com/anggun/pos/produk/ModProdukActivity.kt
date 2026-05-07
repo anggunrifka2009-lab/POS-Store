@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 class ModProdukActivity : AppCompatActivity() {
 
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("produk")
+    private val myRef = database.getReference("Produk")
 
     private lateinit var etNamaProduk: TextInputEditText
     private lateinit var etHargaProduk: TextInputEditText

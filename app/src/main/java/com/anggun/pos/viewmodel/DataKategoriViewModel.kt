@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener
 
 class DataKategoriViewModel : ViewModel() {
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Kategori")
+    private val myRef = database.getReference("kategori")
     val kategoriList = MutableLiveData<ArrayList<ModelKategori>>()
     private var originalKategoriList = ArrayList<ModelKategori>()
     private val searchQuery = MutableLiveData<String?>()
@@ -24,7 +24,7 @@ class DataKategoriViewModel : ViewModel() {
 
     fun getData() {
         isLoading.value = true
-        val query = myRef.orderByChild("idKategori").limitToLast(100)
+        val query = myRef.orderByChild("idkategori").limitToLast(100)
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 isLoading.value = false

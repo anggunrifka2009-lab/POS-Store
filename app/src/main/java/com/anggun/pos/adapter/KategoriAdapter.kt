@@ -23,13 +23,8 @@ class KategoriAdapter (private val kategorilist: List<ModelKategori>):
     }
 
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): KategoriAdapter.KategoriViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.activity_data_kategori, parent, false)
-        appContext = parent.context
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KategoriViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_kategori, parent, false)
         return KategoriViewHolder(view)
     }
 
@@ -46,12 +41,11 @@ class KategoriAdapter (private val kategorilist: List<ModelKategori>):
 
     }
     inner class KategoriViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val rvKategori = itemView.findViewById<TextView>(R.id.rvKategori)
-        val fabTambah = itemView.findViewById<TextView>(R.id.fabTambah)
+        val tvKategori = itemView.findViewById<TextView>(R.id.tvKategori)
+        val chipStatusKategori = itemView.findViewById<TextView>(R.id.chipStatusKategori)
         fun bind(kategori: ModelKategori) {
-            rvKategori.text = kategori.namaKategori
+            tvKategori.text = kategori.namaKategori
             val status = kategori.status
-
             itemView.setOnClickListener {
                 listener?.onItemClick(kategori)
             }

@@ -80,6 +80,7 @@
                     android:layout_margin="10dp">
 
                     <LinearLayout
+                        android:id="@+id/llTransaksi"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -97,6 +98,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llLaporan"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -128,6 +130,7 @@
             android:layout_gravity="center">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvAkun"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -158,6 +161,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvProduk"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -190,6 +194,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvKategori"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -233,6 +238,7 @@
             android:layout_gravity="center">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvPegawai"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -263,6 +269,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCabang"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -295,6 +302,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvPrinter"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

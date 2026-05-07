@@ -24,7 +24,6 @@ class DataProdukViewModel : ViewModel() {
 
     fun getData() {
         isLoading.value = true
-        // Pastikan di ModelProduk kamu namanya beneran "idProduk" ya
         val query = myRef.orderByChild("idProduk").limitToLast(100)
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -3,15 +3,17 @@ package com.anggun.pos.model
 import android.R
 import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.sql.ClientInfoStatus
 
+
 data class ModelKategori(
-    var idKategori: String? = null,
+    var idkategori: String? = null,
     var namaKategori: String? = null,
     var status: String? = null
 ): Parcelable {
     constructor(parcel: Parcel): this(
-        idKategori = parcel.readString(),
+        idkategori = parcel.readString(),
         namaKategori = parcel.readString(),
         status = parcel.readString()
     )
@@ -21,7 +23,7 @@ data class ModelKategori(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(idKategori)
+        parcel.writeString(idkategori)
         parcel.writeString(namaKategori)
         parcel.writeString(status)
     }

@@ -1,8 +1,10 @@
 package com.anggun.pos.kategori
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,6 @@ import com.anggun.pos.R
 import com.anggun.pos.model.ModelKategori
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.FirebaseDatabase
 
 class ModKategoriActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class ModKategoriActivity : AppCompatActivity() {
     private lateinit var etNamaKategori: TextInputEditText
     private lateinit var actvStatusKategori: AutoCompleteTextView
     private lateinit var btnSimpan: MaterialButton
+    private lateinit var ivKembali: ImageView
 
     private var idKategoriTerpilih: String? = null
 
@@ -34,6 +36,12 @@ class ModKategoriActivity : AppCompatActivity() {
 
         init()
         setupDropdown()
+
+        ivKembali.setOnClickListener {
+            val intent = Intent(this, DataKategoriActivity::class.java)
+            startActivity(intent)
+        }
+
         val dataIntent = intent.getParcelableExtra<ModelKategori>("DATA_KATEGORI")
         if (dataIntent != null) {
             setupModeEdit(dataIntent)
@@ -54,6 +62,7 @@ class ModKategoriActivity : AppCompatActivity() {
         etNamaKategori = findViewById(R.id.etNamaKategori)
         actvStatusKategori = findViewById(R.id.actvStatusKategori)
         btnSimpan = findViewById(R.id.btnSimpan)
+        ivKembali = findViewById(R.id.ivKembali)
     }
 
     private fun setupDropdown() {
@@ -63,9 +72,9 @@ class ModKategoriActivity : AppCompatActivity() {
     }
 
     private fun setupModeEdit(kategori: ModelKategori) {
-        idKategoriTerpilih = kategori.idKategori
+        idKategoriTerpilih = kategori.idkategori
         etNamaKategori.setText(kategori.namaKategori)
-        actvStatusKategori.setText(kategori.status, false) // false biar ga filter dropdown
+        actvStatusKategori.setText(kategori.status, false)
         btnSimpan.text = "Perbarui"
     }
 
@@ -90,7 +99,7 @@ class ModKategoriActivity : AppCompatActivity() {
         val id = idKategoriTerpilih ?: myRef.push().key!!
 
         val kategori = ModelKategori(
-            idKategori = id,
+            idkategori = id,
             namaKategori = nama,
             status = status
         )

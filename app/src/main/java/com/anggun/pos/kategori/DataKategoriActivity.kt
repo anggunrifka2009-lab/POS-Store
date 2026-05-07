@@ -1,5 +1,6 @@
 package com.anggun.pos.kategori
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,11 +25,9 @@ class DataKategoriActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_data_kategori)
+        supportActionBar?.hide()
 
         init()
-        fun showKategoriDetailFragment(kategori: ModelKategori) {
-            Toast.makeText(this, "Klik {kategori.namaKategori}", Toast.LENGTH_SHORT).show()
-        }
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -36,20 +35,23 @@ class DataKategoriActivity : AppCompatActivity() {
         rvKategori.layoutManager = layoutManager
         rvKategori.setHasFixedSize(true)
 
+        fabTambah.setOnClickListener {
+            val intent = Intent(this, ModKategoriActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.kategoriList.observe(this) { list ->
             val adapter = KategoriAdapter(list)
             rvKategori.adapter = adapter
 
             adapter.setOnItemClickListener(object : KategoriAdapter.OnItemClickListener {
                 override fun onItemClick(kategori: ModelKategori) {
-                    if (!kategori.idKategori.isNullOrBlank()) {
-                        showKategoriDetailFragment(kategori)
+                    if (!kategori.idkategori.isNullOrBlank()) {
+                        val intent = Intent(this@DataKategoriActivity, ModKategoriActivity::class.java)
+                        intent.putExtra("DATA_KATEGORI", kategori)
+                        startActivity(intent)
                     } else {
-                        Toast.makeText(
-                            this@DataKategoriActivity,
-                            "Galat: {getString(R.string.id_kategori_kosong)}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@DataKategoriActivity, "ID Kosong", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -67,5 +69,3 @@ class DataKategoriActivity : AppCompatActivity() {
         fabTambah = findViewById(R.id.fabTambah)
     }
 }
-
-
