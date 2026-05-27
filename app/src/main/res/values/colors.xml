@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- BACKGROUND -->
+    <color name="bg_dark">#12111A</color>
+    <color name="card_dark">#1B1A24</color>
+
+    <!-- STROKE -->
+    <color name="stroke_dark">#4A4458</color>
+
+    <!-- TEXT -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#CFCFCF</color>
+
+    <!-- ACCENT -->
+    <color name="accent">#B58B7A</color>
+    <color name="accent_soft">#D7B6A7</color>
+
 </resources>

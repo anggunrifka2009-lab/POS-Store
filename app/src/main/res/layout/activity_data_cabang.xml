@@ -5,63 +5,51 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".produk.DataProdukActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".cabang.DataCabangActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/ivKembalip"
+            android:id="@+id/ivKembalic"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/img_3"/>
+            android:src="@drawable/img_3" />
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="6dp"
             android:layout_marginStart="15dp"
+            android:layout_marginEnd="6dp"
             android:src="@drawable/search2"
-            app:tint="#000000" />
+            app:tint="@color/black" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="35dp">
 
             <EditText
-                android:id="@+id/etSearchPro"
+                android:id="@+id/etSearchCabang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="7dp"
                 android:background="@android:color/transparent"
-                android:hint="Cari produk..."
+                android:hint="Cari cabang..."
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textSize="14sp" />
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvKategoriFilter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="8dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_filter_kategori"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -77,24 +65,23 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvProduk"
+                    android:id="@+id/rvCabang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_produk" />
+                    tools:listitem="@layout/item_cabang" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabTambahp"
+            android:id="@+id/fabTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/baseline_add_24"
-            android:backgroundTint="#795548"/>
-
+            android:backgroundTint="#795548"
+            android:src="@drawable/baseline_add_24" />
     </FrameLayout>
 
 </LinearLayout>

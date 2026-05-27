@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -14,37 +19,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pos">
         <activity
+            android:name=".cabang.ModCabangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cabang.DataCabangActivity"
+            android:exported="false" />
+        <activity
             android:name=".produk.ModProdukActivity"
-            android:exported="true" >
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".produk.DataProdukActivity"
             android:exported="false" />
-
         <activity
             android:name=".kategori.ModKategoriActivity"
-            android:exported="true">
-
-
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".kategori.DataKategoriActivity"
-            android:exported="true" >
-
+            android:exported="true" />
+        <activity
+            android:name=".transaksi.TransaksiActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

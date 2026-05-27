@@ -41,16 +41,18 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.firebase.auth)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database)
     testImplementation(libs.junit)
+    implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("androidx.cardview:cardview:1.0.0")
 }

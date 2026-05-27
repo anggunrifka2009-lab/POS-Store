@@ -2,6 +2,7 @@ package com.anggun.pos.kategori
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -20,6 +21,7 @@ class DataKategoriActivity : AppCompatActivity() {
     private val viewModel: DataKategoriViewModel by viewModels()
     private lateinit var rvKategori: RecyclerView
     private lateinit var fabTambah: FloatingActionButton
+    private lateinit var ivKembali: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,10 @@ class DataKategoriActivity : AppCompatActivity() {
         fabTambah.setOnClickListener {
             val intent = Intent(this, ModKategoriActivity::class.java)
             startActivity(intent)
+        }
+
+        ivKembali.setOnClickListener {
+            finish()
         }
 
         viewModel.kategoriList.observe(this) { list ->
@@ -66,6 +72,7 @@ class DataKategoriActivity : AppCompatActivity() {
 
     private fun init() {
         rvKategori = findViewById(R.id.rvKategori)
-        fabTambah = findViewById(R.id.fabTambah)
+        fabTambah = findViewById(R.id.fabTambahk)
+        ivKembali = findViewById(R.id.ivKembalik)
     }
 }

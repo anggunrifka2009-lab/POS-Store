@@ -5,28 +5,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".kategori.DataKategoriActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".kategori.DataKategoriActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="5dp">
 
         <ImageView
+            android:id="@+id/ivKembalik"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/img_3"/>
+            android:src="@drawable/img_3"
+            app:tint="#D2B48C"/>
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="6dp"
             android:layout_marginStart="15dp"
+            android:layout_marginEnd="6dp"
             android:src="@drawable/search2"
             app:tint="@color/black" />
 
@@ -42,34 +45,45 @@
                 android:layout_marginTop="7dp"
                 android:background="@android:color/transparent"
                 android:hint="Cari kategori..."
-                android:textSize="14sp"
+                android:importantForAutofill="no"
                 android:inputType="text"
-                android:importantForAutofill="no" />
+                android:textSize="14sp" />
 
         </com.google.android.material.card.MaterialCardView>
-
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvKategori"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_kategori" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvKategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_kategori" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabTambah"
+            android:id="@+id/fabTambahk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/baseline_add_24"/>
+            android:src="@drawable/baseline_add_24"
+            android:backgroundTint="#795548"/>
 
     </FrameLayout>
 
 </LinearLayout>
-
-

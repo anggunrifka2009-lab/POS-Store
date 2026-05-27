@@ -38,8 +38,7 @@ class ModKategoriActivity : AppCompatActivity() {
         setupDropdown()
 
         ivKembali.setOnClickListener {
-            val intent = Intent(this, DataKategoriActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val dataIntent = intent.getParcelableExtra<ModelKategori>("DATA_KATEGORI")
@@ -106,12 +105,15 @@ class ModKategoriActivity : AppCompatActivity() {
 
         myRef.child(id).setValue(kategori)
             .addOnSuccessListener {
-                val pesan = if (idKategoriTerpilih == null) "Berhasil simpan" else "Berhasil update"
+
+                val pesan =
+                    if (idKategoriTerpilih == null)
+                        "Berhasil simpan"
+                    else
+                        "Berhasil update"
+
                 Toast.makeText(this, pesan, Toast.LENGTH_SHORT).show()
                 finish()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Gagal: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

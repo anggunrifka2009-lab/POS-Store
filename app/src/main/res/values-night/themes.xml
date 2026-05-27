@@ -3,5 +3,13 @@
     <style name="Base.Theme.Pos" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorSurface">#2B2930</item>
+
+        <item name="colorOnBackground">#A8A8A8</item>
+
+        <item name="color">#FFFFFF</item>
+
+        <item name="colorOnSurface">#FFFFFF</item>
     </style>
+
 </resources>

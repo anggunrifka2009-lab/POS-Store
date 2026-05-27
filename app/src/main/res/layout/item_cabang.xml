@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardDataKategori"
+    android:id="@+id/cardDataCabang"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
@@ -26,46 +26,54 @@
             <LinearLayout
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/img_1"
+                    android:layout_gravity="center"
                     android:layout_marginTop="6dp"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/img_1" />
+
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvKategori"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Kategori"
-                android:textColor="?attr/color"
-                android:paddingStart="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipStatusKategori"
+                android:id="@+id/tvNamaCabang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aktif"
-                android:textColor="?attr/color"
-                app:chipIcon="@drawable/img_4"
-                app:chipIconTint="#795548"/>
+                android:text="Cabang Semarang"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAlamatCabang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Jl. Pemuda No. 12"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipStatusCabang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aktif"
+            android:textColor="?attr/color"
+            app:chipIcon="@drawable/img_4"
+            app:chipIconTint="#795548"/>
 
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
-
