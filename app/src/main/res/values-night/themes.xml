@@ -9,7 +9,7 @@
 
         <item name="color">#FFFFFF</item>
 
-        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#BDBDBD</item>
     </style>
 
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".kategori.ModKategoriActivity"
+    tools:context=".produk.ModProdukActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginVertical="14dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="13dp"
             android:src="@drawable/img_3"
             app:tint="#D2B48C"/>
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:text="Tambah Produk"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -43,24 +43,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="5dp"
                 android:text="PointOfSales"
                 android:textColor="@color/white"
                 android:padding="3dp"/>
 
-
         </LinearLayout>
     </LinearLayout>
 
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:id="@+id/tvJudul"
@@ -90,20 +91,17 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="140dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="10dp">
                         <ImageView
                             android:id="@+id/imgProduk"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="200dp"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
                             android:src="@android:drawable/ic_menu_camera"
                             app:tint="#A1887F"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tambah Foto Produk"
-                            android:textColor="#A1887F"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -149,6 +147,7 @@
                 android:layout_margin="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="2dp"
+                app:strokeColor="?attr/colorSurface"
                 app:boxStrokeWidthFocused="3dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -167,6 +166,7 @@
                 android:layout_margin="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="2dp"
+                app:strokeColor="?attr/colorSurface"
                 app:boxStrokeWidthFocused="3dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -188,6 +188,7 @@
                 android:layout_gravity="center"
                 android:hint="Status Produk"
                 app:boxStrokeWidth="2dp"
+                app:strokeColor="?attr/colorSurface"
                 app:boxStrokeWidthFocused="3dp">
 
                 <AutoCompleteTextView
@@ -205,7 +206,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:text="Kategori"
-                android:textColor="#3E2723"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
@@ -227,7 +227,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:text="Cabang"
-                android:textColor="#3E2723"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
@@ -250,6 +249,7 @@
                 android:layout_margin="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="2dp"
+                app:strokeColor="?attr/colorSurface"
                 app:boxStrokeWidthFocused="3dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -284,7 +284,5 @@
                 app:cornerRadius="13dp" />
 
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>

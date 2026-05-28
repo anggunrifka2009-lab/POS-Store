@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.anggun.pos.cabang.DataCabangActivity
 import com.anggun.pos.kategori.DataKategoriActivity
 import com.anggun.pos.produk.DataProdukActivity
 import com.google.android.material.card.MaterialCardView
@@ -65,7 +66,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvCabang.setOnClickListener {
-            showToast("Menu Cabang")
+            val intent = Intent(this, com.anggun.pos.cabang.DataCabangActivity::class.java)
+            startActivity(intent)
         }
 
         cvPrinter.setOnClickListener {
@@ -106,7 +108,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupEstimasiPendapatan(textView: TextView) {
 
-        // Random estimasi harian
         val estimasi = (200000..1500000).random()
 
         textView.text =
