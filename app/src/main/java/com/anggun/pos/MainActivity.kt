@@ -15,10 +15,20 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+import com.google.firebase.auth.FirebaseAuth
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Cek Login: Jika belum login, lempar ke LoginActivity
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_main)
 
         val tvSapaan: TextView = findViewById(R.id.tvSapaan)
@@ -40,7 +50,8 @@ class MainActivity : AppCompatActivity() {
         setupEstimasiPendapatan(tvEstimasi)
 
         llTransaksi.setOnClickListener {
-            showToast("Menu Transaksi")
+            val intent = Intent(this, TransaksiActivity::class.java)
+            startActivity(intent)
         }
 
         llLaporan.setOnClickListener {
@@ -48,7 +59,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvAkun.setOnClickListener {
-            showToast("Menu Akun")
+            val intent = Intent(this, AkunActivity::class.java)
+            startActivity(intent)
         }
 
         cvProduk.setOnClickListener {
@@ -62,7 +74,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvPegawai.setOnClickListener {
-            showToast("Menu Pegawai")
+            val intent = Intent(this, PegawaiActivity::class.java)
+            startActivity(intent)
         }
 
         cvCabang.setOnClickListener {
@@ -71,7 +84,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvPrinter.setOnClickListener {
-            showToast("Menu Printer")
+            val intent = Intent(this, PrinterActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -87,7 +101,10 @@ class MainActivity : AppCompatActivity() {
             else -> "Selamat Malam"
         }
 
-        textView.text = "$sapaan, Anggun"
+        val shared = getSharedPreferences("LOGIN", MODE_PRIVATE)
+        val nama = shared.getString("nama", "Admin")
+
+        textView.text = "$sapaan, $nama"
     }
 
 

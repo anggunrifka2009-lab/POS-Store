@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="8dp"
+    android:gravity="center_vertical"
+    android:background="?attr/colorSurface">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_printer"
+        android:padding="8dp"
+        android:background="@drawable/bg_circle_brown_light"
+        app:tint="#6D4C41"
+        android:contentDescription="Printer Icon"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/tvDeviceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Printer Name"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDeviceAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DC:0D:51:A7:FF:7A"
+            android:textSize="12sp"
+            android:textColor="#999999"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPilih"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="?attr/color"
+        android:textSize="14sp"/>
+
+</LinearLayout>

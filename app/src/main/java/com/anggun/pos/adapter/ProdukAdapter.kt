@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.anggun.pos.R
 import com.anggun.pos.model.ModelProduk
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import java.text.NumberFormat
 import java.util.Locale
@@ -67,8 +69,14 @@ class ProdukAdapter(
         private val tvStok =
             itemView.findViewById<TextView>(R.id.tvStok)
 
+        private val tvCabang =
+            itemView.findViewById<TextView>(R.id.tvCabang)
+
         private val chipStatus =
             itemView.findViewById<Chip>(R.id.chipStatusKategori)
+
+        private val ivProduk =
+            itemView.findViewById<ImageView>(R.id.imgProduk)
 
         fun bind(produk: ModelProduk) {
 
@@ -94,7 +102,15 @@ class ProdukAdapter(
                     produk.stokProduk.toString()
             }
 
+            tvCabang.text = produk.idCabang ?: "Utama"
+
             chipStatus.text = produk.statusProduk
+            
+            Glide.with(itemView.context)
+                .load(produk.fotoProduk)
+                .placeholder(android.R.drawable.ic_menu_gallery)
+                .error(android.R.drawable.ic_menu_report_image)
+                .into(ivProduk)
 
             itemView.setOnClickListener {
                 listener?.onItemClick(produk)

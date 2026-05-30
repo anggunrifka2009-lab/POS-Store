@@ -21,7 +21,8 @@
             android:layout_marginVertical="14dp"
             android:layout_marginStart="13dp"
             android:src="@drawable/img_3"
-            app:tint="#D2B48C"/>
+            app:tint="#D2B48C"
+            android:contentDescription="Kembali" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -74,71 +75,23 @@
                 android:gravity="center"
                 android:layout_margin="20dp"/>
 
-            <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:strokeColor="#D7CCC8"
-                app:strokeWidth="1dp">
+                android:layout_margin="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="2dp"
+                app:strokeColor="?attr/colorSurface"
+                app:boxStrokeWidthFocused="3dp">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLinkGambar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#F5F5F5">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="140dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-                        <ImageView
-                            android:id="@+id/imgProduk"
-                            android:layout_width="200dp"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@android:drawable/ic_menu_camera"
-                            app:tint="#A1887F"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:background="#795548">
-
-                        <Button
-                            android:id="@+id/btnKamera"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Kamera"
-                            android:textColor="#FFFFFF"
-                            android:backgroundTint="#A1887F"
-                            android:layout_marginEnd="5dp"
-                            app:icon="@android:drawable/ic_menu_camera"
-                            app:iconTint="#FFFFFF"/>
-
-                        <Button
-                            android:id="@+id/btnGaleri"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Galeri"
-                            android:textColor="#FFFFFF"
-                            android:backgroundTint="#A1887F"
-                            android:layout_marginStart="5dp"
-                            app:icon="@android:drawable/ic_menu_gallery"
-                            app:iconTint="#FFFFFF"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                    android:hint="Link Gambar Produk (URL)"
+                    android:inputType="textUri" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="350dp"
@@ -155,7 +108,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nama Produk"
-                    android:autofillHints="name"
                     android:inputType="textCapWords"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +125,6 @@
                     android:id="@+id/etHargaProduk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="name"
                     android:hint="Harga"
                     android:inputType="number" />
 
@@ -256,7 +207,6 @@
                     android:id="@+id/etStok"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="name"
                     android:hint="Stok"
                     android:inputType="number" />
 

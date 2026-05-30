@@ -1,25 +1,15 @@
 package com.anggun.pos.produk
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Bundle
-import android.provider.MediaStore
+ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.anggun.pos.R
 import com.anggun.pos.model.ModelProduk
 import com.google.android.material.button.MaterialButton
@@ -32,9 +22,7 @@ import java.util.Locale
 class ModProdukActivity : AppCompatActivity() {
 
     private lateinit var ivKembali: ImageView
-    private lateinit var btnKamera: Button
-    private lateinit var btnGaleri: Button
-    private lateinit var imgPreview: ImageView
+    private lateinit var etLinkGambar: TextInputEditText
     private lateinit var etNamaProduk: TextInputEditText
     private lateinit var etHargaProduk: TextInputEditText
     private lateinit var etStok: TextInputEditText
@@ -50,50 +38,8 @@ class ModProdukActivity : AppCompatActivity() {
 
     private var kategoriDipilih = ""
     private var cabangDipilih = ""
-
     private var idProdukTerpilih: String? = null
     private var dataProdukOld: ModelProduk? = null
-
-    private var fotoStringTerpilih: String = ""
-    private var bitmapFoto: Bitmap? = null
-
-    companion object {
-        private const val CAMERA_PERMISSION_CODE = 100
-    }
-
-    private val galeriLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val uri = result.data?.data
-            if (uri != null) {
-                bitmapFoto = null
-                fotoStringTerpilih = uri.toString()
-
-                // PERBAIKAN UTAMA: Ambil izin akses baca permanen untuk URI Galeri
-                try {
-                    val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    contentResolver.takePersistableUriPermission(uri, takeFlags)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-                imgPreview.imageTintList = null
-                imgPreview.setImageURI(uri)
-            }
-        }
-    }
-
-    private val kameraLauncher = registerForActivityResult(
-        ActivityResultContracts.TakePicturePreview()
-    ) { bitmap ->
-        if (bitmap != null) {
-            bitmapFoto = bitmap
-            fotoStringTerpilih = ""
-            imgPreview.imageTintList = null
-            imgPreview.setImageBitmap(bitmap)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,15 +53,6 @@ class ModProdukActivity : AppCompatActivity() {
         ambilCabang()
 
         ivKembali.setOnClickListener { finish() }
-        btnKamera.setOnClickListener { cekPermissionKamera() }
-
-        btnGaleri.setOnClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "image/*"
-            }
-            galeriLauncher.launch(intent)
-        }
 
         val dataIntent = intent.getParcelableExtra<ModelProduk>("DATA_PRODUK")
         if (dataIntent != null) {
@@ -127,9 +64,7 @@ class ModProdukActivity : AppCompatActivity() {
 
     private fun init() {
         ivKembali = findViewById(R.id.ivKembali)
-        btnKamera = findViewById(R.id.btnKamera)
-        btnGaleri = findViewById(R.id.btnGaleri)
-        imgPreview = findViewById(R.id.imgProduk)
+        etLinkGambar = findViewById(R.id.etLinkGambar)
         etNamaProduk = findViewById(R.id.etNamaProduk)
         etHargaProduk = findViewById(R.id.etHargaProduk)
         etStok = findViewById(R.id.etStok)
@@ -151,6 +86,7 @@ class ModProdukActivity : AppCompatActivity() {
         dataProdukOld = produk
         idProdukTerpilih = produk.idProduk
 
+        etLinkGambar.setText(produk.fotoProduk)
         etNamaProduk.setText(produk.namaProduk)
         etHargaProduk.setText(produk.hargaProduk.toString())
 
@@ -168,16 +104,6 @@ class ModProdukActivity : AppCompatActivity() {
 
         cabangDipilih = produk.idCabang ?: ""
         btnPilihCabang.text = if (cabangDipilih.isEmpty()) "Pilih Cabang" else cabangDipilih
-
-        if (!produk.fotoProduk.isNullOrEmpty() && produk.fotoProduk != "bitmap_kamera_saved") {
-            fotoStringTerpilih = produk.fotoProduk
-            try {
-                imgPreview.imageTintList = null
-                imgPreview.setImageURI(Uri.parse(produk.fotoProduk))
-            } catch (e: Exception) {
-                imgPreview.setImageResource(android.R.drawable.ic_menu_camera)
-            }
-        }
 
         tvJudul?.text = "Ubah Produk"
         btnSimpan.text = "Perbarui"
@@ -219,8 +145,10 @@ class ModProdukActivity : AppCompatActivity() {
                 val namaCabang = data.child("namaCabang").value?.toString()
                     ?: data.child("nama").value?.toString()
                     ?: data.child("nama_cabang").value?.toString()
+                
+                val statusCabang = data.child("status").value?.toString()
 
-                if (!namaCabang.isNullOrEmpty()) {
+                if (!namaCabang.isNullOrEmpty() && statusCabang == "Aktif") {
                     listCabang.add(namaCabang)
                 }
             }
@@ -242,6 +170,7 @@ class ModProdukActivity : AppCompatActivity() {
     }
 
     private fun validasi() {
+        val linkGambar = etLinkGambar.text.toString().trim()
         val nama = etNamaProduk.text.toString().trim()
         val harga = etHargaProduk.text.toString().trim()
         val stok = etStok.text.toString().trim()
@@ -254,10 +183,10 @@ class ModProdukActivity : AppCompatActivity() {
         if (status.isEmpty()) { Toast.makeText(this, "Pilih status produk", Toast.LENGTH_SHORT).show(); return }
         if (cbStokTakTerbatas.isChecked == false && stok.isEmpty()) { etStok.error = "Stok tidak boleh kosong"; return }
 
-        simpanData(nama, harga, stok, status)
+        simpanData(nama, harga, stok, status, linkGambar)
     }
 
-    private fun simpanData(nama: String, harga: String, stok: String, status: String) {
+    private fun simpanData(nama: String, harga: String, stok: String, status: String, linkGambar: String) {
         val id = idProdukTerpilih ?: myRef.push().key!!
 
         val waktuSekarang = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
@@ -265,21 +194,13 @@ class ModProdukActivity : AppCompatActivity() {
 
         val stokProduk = if (cbStokTakTerbatas.isChecked) 0 else stok.toInt()
 
-        val finalFotoString = if (bitmapFoto != null) {
-            "bitmap_kamera_saved"
-        } else if (fotoStringTerpilih.isNotEmpty()) {
-            fotoStringTerpilih
-        } else {
-            dataProdukOld?.fotoProduk ?: ""
-        }
-
         val produk = ModelProduk(
             idProduk = id,
             namaProduk = nama,
             hargaProduk = harga.toInt(),
             idKategori = kategoriDipilih,
             idCabang = cabangDipilih,
-            fotoProduk = finalFotoString,
+            fotoProduk = linkGambar,
             stokProduk = stokProduk,
             tanpaBatas = cbStokTakTerbatas.isChecked,
             statusProduk = status,
@@ -296,22 +217,5 @@ class ModProdukActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    private fun cekPermissionKamera() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            kameraLauncher.launch(null)
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_PERMISSION_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            kameraLauncher.launch(null)
-        } else if (requestCode == CAMERA_PERMISSION_CODE) {
-            Toast.makeText(this, "Izin kamera ditolak", Toast.LENGTH_SHORT).show()
-        }
     }
 }
