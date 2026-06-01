@@ -17,6 +17,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -34,7 +35,7 @@ class PrinterActivity : AppCompatActivity() {
     private lateinit var btnRefreshDevices: Button
     private lateinit var rvBluetoothDevices: RecyclerView
     private lateinit var btnTestPrint: Button
-    private lateinit var btnBack: android.widget.ImageButton
+    private lateinit var btnBack: ImageView
 
     private lateinit var tvConnectedName: TextView
     private lateinit var tvConnectedAddress: TextView
@@ -49,7 +50,6 @@ class PrinterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_printer)
 
-        // Inisialisasi View sesuai ID XML
         btnRefreshDevices = findViewById(R.id.btnRefreshDevices)
         rvBluetoothDevices = findViewById(R.id.rvBluetoothDevices)
         btnTestPrint = findViewById(R.id.btnTestPrint)
@@ -62,22 +62,18 @@ class PrinterActivity : AppCompatActivity() {
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bluetoothAdapter = bluetoothManager.adapter
 
-        // Setup RecyclerView dan Adapter
         rvBluetoothDevices.layoutManager = LinearLayoutManager(this)
         deviceAdapter = DeviceAdapter(discoveredDevices) { device ->
             stopDiscovery()
 
-            // Set perangkat terpilih
             selectedDevice = BluetoothConnection(device)
             btnTestPrint.isEnabled = true
 
-            // Update UI status di layar
             tvConnectedName.text = device.name ?: "Unknown Device"
             tvConnectedAddress.text = device.address
             tvConnectionStatus.text = "Terpilih"
             tvConnectionStatus.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
 
-            // Simpan ke SharedPreferences agar bisa dibaca dari NotaActivity
             val shared = getSharedPreferences("PRINTER", MODE_PRIVATE)
             shared.edit()
                 .putString("name", device.name)
@@ -100,7 +96,6 @@ class PrinterActivity : AppCompatActivity() {
 
         loadSavedDevice()
 
-        // Daftarkan BroadcastReceiver untuk scan Bluetooth
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED)
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
@@ -127,7 +122,6 @@ class PrinterActivity : AppCompatActivity() {
                 BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
                     btnRefreshDevices.text = "Cari Perangkat"
                     btnRefreshDevices.isEnabled = true
-                    // Jika scan sekitar kosong, otomatis muat daftar perangkat yang sudah pernah dipairing
                     if (discoveredDevices.isEmpty()) {
                         refreshDeviceList()
                     }
@@ -212,7 +206,6 @@ class PrinterActivity : AppCompatActivity() {
         if (!checkPermissions()) return
 
         try {
-            // Mengambil list printer paired bawaan library
             val bluetoothDevicesList = BluetoothPrintersConnections().list
 
             if (bluetoothDevicesList != null && bluetoothDevicesList.isNotEmpty()) {
@@ -277,7 +270,6 @@ class PrinterActivity : AppCompatActivity() {
         }
 
         try {
-            // Ukuran kertas diset ke 58f standar printer portable kasir
             val printer = EscPosPrinter(device, 203, 58f, 32)
             printer.printFormattedText(
                 "[C]<u><font size='big'>TEST PRINT BERHASIL</font></u>\n" +
@@ -302,7 +294,6 @@ class PrinterActivity : AppCompatActivity() {
         }
     }
 
-    // Class ViewHolder & Adapter yang aman dari manipulasi silang tipe data library
     class DeviceAdapter(private val devices: List<BluetoothDevice>, private val onClick: (BluetoothDevice) -> Unit) :
         RecyclerView.Adapter<DeviceAdapter.ViewHolder>() {
 

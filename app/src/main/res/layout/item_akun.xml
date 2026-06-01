@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="10dp"
-    app:cardCornerRadius="20dp"
-    app:cardBackgroundColor="?attr/colorSurface">
+    android:layout_marginVertical="5dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,55 +15,50 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            app:cardCornerRadius="10dp"
-            app:strokeColor="#D6D6D6"
-            app:strokeWidth="1dp"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:id="@+id/ivFotoPegawai"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_2" />
-
-        </com.google.android.material.card.MaterialCardView>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_11"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#795548"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="16dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvNamaPegawai"
+                android:id="@+id/tvNamaAkun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama"
+                android:text="Nama Akun"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#212121"/>
 
             <TextView
-                android:id="@+id/tvAlamatPegawai"
+                android:id="@+id/tvEmailAkun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Alamat"
-                android:textSize="13sp" />
+                android:text="email@example.com"
+                android:textSize="14sp"
+                android:textColor="#757575"/>
 
         </LinearLayout>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/tvRolePegawai"
+        <TextView
+            android:id="@+id/tvRoleAkun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kasir"
+            android:text="Admin"
             android:textSize="12sp"
-            android:textColor="?attr/color" />
+            android:textStyle="bold"
+            android:textColor="#795548"
+            android:background="#F6F1EE"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"/>
 
     </LinearLayout>
 

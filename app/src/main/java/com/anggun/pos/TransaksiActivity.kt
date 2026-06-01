@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,7 @@ class TransaksiActivity : AppCompatActivity() {
     private lateinit var tvSubJudul: TextView
     private lateinit var btnCheckout: Button
     private lateinit var spCabang: AutoCompleteTextView
+    private lateinit var ivKembali: ImageView
 
     private lateinit var database: DatabaseReference
 
@@ -60,8 +62,13 @@ class TransaksiActivity : AppCompatActivity() {
         tvSubJudul = findViewById(R.id.tvSubJudul)
         btnCheckout = findViewById(R.id.btnCheckout)
         spCabang = findViewById<AutoCompleteTextView>(R.id.spCabang)
+        ivKembali = findViewById<ImageView>(R.id.ivKembali)
 
         database = FirebaseDatabase.getInstance().reference
+
+        ivKembali.setOnClickListener {
+            finish()
+        }
 
         val shared = getSharedPreferences("LOGIN", MODE_PRIVATE)
         namaKasir = shared.getString("nama", "").toString()

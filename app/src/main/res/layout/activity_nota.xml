@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0"
     android:orientation="vertical"
+    android:background="?attr/colorSurface"
     tools:context=".NotaActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,14 +34,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp"
-                android:background="@android:color/white">
+                android:padding="24dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="POS STORE"
-                    android:textColor="#3E2723"
+                    android:textColor="?attr/color"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:gravity="center" />
@@ -51,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jl. Raya Utama No. 123"
-                    android:textColor="#757575"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="12sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"/>
@@ -66,7 +65,7 @@
                     android:id="@+id/tvNota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#212121"
+                    android:textColor="?attr/color"
                     android:textSize="15sp"
                     android:fontFamily="monospace"
                     android:lineSpacingExtra="4dp"
@@ -83,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Terima Kasih"
-                    android:textColor="#616161"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="14sp"
                     android:textStyle="italic"
                     android:gravity="center" />
@@ -92,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Silakan Datang Kembali"
-                    android:textColor="#616161"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="12sp"
                     android:gravity="center" />
 
@@ -105,7 +104,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@android:color/white"
         android:elevation="8dp">
 
         <Button
