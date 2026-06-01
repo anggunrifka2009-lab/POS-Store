@@ -75,7 +75,7 @@
                     android:src="@drawable/ic_printer"
                     android:padding="10dp"
                     android:background="@drawable/bg_circle_brown_light"
-                    app:tint="#6D4C41"
+                    app:tint="#4E342E"
                     android:contentDescription="Printer Icon"/>
 
                 <LinearLayout

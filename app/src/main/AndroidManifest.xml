@@ -76,6 +76,9 @@
         <activity
             android:name=".PrinterActivity"
             android:exported="false" />
+        <activity
+            android:name=".RiwayatActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

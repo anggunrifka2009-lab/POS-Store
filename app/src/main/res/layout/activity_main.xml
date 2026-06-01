@@ -62,7 +62,7 @@
                         android:id="@+id/tvEstimasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp. 10.000" />
+                        android:text="Rp. 0" />
                 </LinearLayout>
 
 
@@ -82,7 +82,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -98,11 +101,14 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llLaporan"
+                        android:id="@+id/llRiwayat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -114,7 +120,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Laporan" />
+                            android:text="Riwayat" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

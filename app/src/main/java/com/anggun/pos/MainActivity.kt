@@ -4,22 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.anggun.pos.cabang.DataCabangActivity
 import com.anggun.pos.kategori.DataKategoriActivity
+import com.anggun.pos.model.ModelRiwayat
 import com.anggun.pos.produk.DataProdukActivity
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
-import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var database: DatabaseReference
+    private lateinit var tvEstimasi: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +36,14 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        database = FirebaseDatabase.getInstance().reference
+
         val tvSapaan: TextView = findViewById(R.id.tvSapaan)
         val tvTanggal: TextView = findViewById(R.id.tvTanggal)
-        val tvEstimasi: TextView = findViewById(R.id.tvEstimasi)
+        tvEstimasi = findViewById(R.id.tvEstimasi)
 
         val llTransaksi: LinearLayout = findViewById(R.id.llTransaksi)
-        val llLaporan: LinearLayout = findViewById(R.id.llLaporan)
+        val llRiwayat: LinearLayout = findViewById(R.id.llRiwayat)
 
         val cvAkun: MaterialCardView = findViewById(R.id.cvAkun)
         val cvProduk: MaterialCardView = findViewById(R.id.cvProduk)
@@ -49,15 +54,16 @@ class MainActivity : AppCompatActivity() {
 
         setupSapaanOtomatis(tvSapaan)
         setupTanggalOtomatis(tvTanggal)
-        setupEstimasiPendapatan(tvEstimasi)
+        updateEstimasiHariIni()
 
         llTransaksi.setOnClickListener {
             val intent = Intent(this, TransaksiActivity::class.java)
             startActivity(intent)
         }
 
-        llLaporan.setOnClickListener {
-            showToast("Membuka Laporan")
+        llRiwayat.setOnClickListener {
+            val intent = Intent(this, RiwayatActivity::class.java)
+            startActivity(intent)
         }
 
         cvAkun.setOnClickListener {
@@ -122,22 +128,27 @@ class MainActivity : AppCompatActivity() {
         textView.text = formattedDate
     }
 
-    private fun setupEstimasiPendapatan(textView: TextView) {
-        val estimasi = (200000..1500000).random()
-        textView.text = "Estimasi hari ini Rp ${formatRupiah(estimasi)}"
+    private fun updateEstimasiHariIni() {
+        val today = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        database.child("transaksi").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var totalEstimasi = 0
+                for (data in snapshot.children) {
+                    val tanggal = data.child("tanggal").value?.toString()
+                    val total = data.child("total").value?.toString()?.toIntOrNull() ?: 0
+                    if (tanggal == today) {
+                        totalEstimasi += total
+                    }
+                }
+                tvEstimasi.text = "Rp ${formatRupiah(totalEstimasi)}"
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     private fun formatRupiah(number: Int): String {
         return NumberFormat
             .getNumberInstance(Locale("id", "ID"))
             .format(number)
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(
-            this,
-            message,
-            Toast.LENGTH_SHORT
-        ).show()
     }
 }
