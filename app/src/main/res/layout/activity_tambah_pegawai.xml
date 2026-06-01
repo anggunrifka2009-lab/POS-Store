@@ -130,14 +130,16 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnSimpanPegawai"
+                android:id="@+id/btnSimpan"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="#6D4C41"
-                android:text="Simpan Pegawai"
+                android:text="Simpan"
                 android:textColor="@color/white"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"/>
 
         </LinearLayout>
 
