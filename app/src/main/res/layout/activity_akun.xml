@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F6F1EE"
     tools:context=".AkunActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="#795548"
         android:gravity="center_vertical">
 
@@ -29,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profil Saya"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:layout_marginStart="20dp"/>
@@ -60,63 +59,139 @@
                     android:padding="24dp"
                     android:gravity="center_horizontal">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/ivProfile"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:src="@drawable/img_11"
-                        app:civ_border_width="3dp"
-                        app:civ_border_color="#795548"
-                        android:layout_marginBottom="24dp"/>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
+                    <!-- Profile Image with Edit Overlay -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Nama"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:enabled="false"
-                        app:boxStrokeColor="#795548"
-                        android:layout_marginBottom="16dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvNamaProfile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="#212121"
-                            android:textStyle="bold"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Email"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:enabled="false"
-                        app:boxStrokeColor="#795548"
-                        android:layout_marginBottom="16dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvEmailProfile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="#212121"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Role"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:enabled="false"
-                        app:boxStrokeColor="#795548"
                         android:layout_marginBottom="24dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvRoleProfile"
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivProfile"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/img_11"
+                            app:civ_border_width="3dp"
+                            app:civ_border_color="#795548"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignEnd="@id/ivProfile"
+                            android:layout_alignBottom="@id/ivProfile"
+                            android:background="@drawable/bg_circle_brown_light"
+                            android:padding="8dp"
+                            android:src="@drawable/img_17"
+                            app:tint="?attr/colorSurface"
+                            android:contentDescription="Edit Foto" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_account_circle"
+                            app:tint="#795548"/>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="#212121"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nama"
+                                android:textSize="12sp"
+                                android:textColor="#757575"/>
+                            <TextView
+                                android:id="@+id/tvNamaProfile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="17sp"
+                                android:textColor="?attr/color"
+                                android:textStyle="bold"
+                                android:paddingTop="2dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/img_15"
+                            app:tint="#795548"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Email"
+                                android:textSize="12sp"
+                                android:textColor="#757575"/>
+                            <TextView
+                                android:id="@+id/tvEmailProfile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="?attr/color"
+                                android:paddingTop="2dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="24dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/img_16"
+                            app:tint="#795548"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Role"
+                                android:textSize="12sp"
+                                android:textColor="#757575"/>
+                            <TextView
+                                android:id="@+id/tvRoleProfile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="?attr/color"
+                                android:paddingTop="2dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnLogout"
@@ -128,7 +203,7 @@
                         android:textColor="@android:color/white"
                         android:textAllCaps="false"
                         android:textStyle="bold"
-                        app:icon="@drawable/img_6"
+                        app:icon="@drawable/img_12"
                         app:iconGravity="textStart"
                         app:iconTint="@android:color/white"/>
 

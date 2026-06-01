@@ -10,7 +10,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,6 +56,7 @@ class TransaksiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_transaksi)
 
         rvProduk = findViewById(R.id.rvProduk)
@@ -135,6 +139,12 @@ class TransaksiActivity : AppCompatActivity() {
 
             simpanTransaksi(bayar)
         }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     private fun loadCabang() {
@@ -171,7 +181,6 @@ class TransaksiActivity : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    // Simpan qty yang sedang dipilih agar tidak reset saat data berubah
                     val currentQty = listProdukFull.associate { (it.idProduk ?: "") to it.qty }
 
                     listProdukFull.clear()
@@ -182,7 +191,6 @@ class TransaksiActivity : AppCompatActivity() {
                             listProdukFull.add(produk)
                         }
                     }
-                    // Update tampilan sesuai pencarian yang ada
                     filterProduk(etCariProduk.text.toString())
                 }
 
@@ -197,8 +205,8 @@ class TransaksiActivity : AppCompatActivity() {
         val filteredList = if (query.isEmpty()) {
             listProdukFull
         } else {
-            listProdukFull.filter { 
-                it.namaProduk?.lowercase()?.contains(query.lowercase()) == true 
+            listProdukFull.filter {
+                it.namaProduk?.lowercase()?.contains(query.lowercase()) == true
             }
         }
         listProduk.clear()
@@ -264,7 +272,6 @@ class TransaksiActivity : AppCompatActivity() {
                     .push()
                     .setValue(mapItem)
 
-                // Update stok di database Produk
                 if (produk.tanpaBatas != true && produk.idProduk != null) {
                     val sisaStok = (produk.stokProduk ?: 0) - produk.qty
                     database.child("Produk").child(produk.idProduk!!).child("stokProduk").setValue(sisaStok)

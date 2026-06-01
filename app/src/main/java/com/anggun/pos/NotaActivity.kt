@@ -10,10 +10,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.dantsu.escposprinter.EscPosPrinter
 import com.dantsu.escposprinter.connection.bluetooth.BluetoothConnection
 import java.text.NumberFormat
@@ -29,22 +32,20 @@ class NotaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_nota)
 
-        // Inisialisasi View ID dari XML
         tvAlamatNota = findViewById(R.id.tvAlamatNota)
         tvNota = findViewById(R.id.tvNota)
         btnBagikan = findViewById(R.id.btnBagikan)
         btnCetak = findViewById(R.id.btnCetak)
         toolbar = findViewById(R.id.toolbar)
 
-        // Setup Toolbar dan Tombol Kembali
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-        // Tangkap data kiriman dari TransaksiActivity
         val alamatCabang = intent.getStringExtra("alamat_cabang") ?: "Alamat Belum Diatur"
         val kasir = intent.getStringExtra("kasir") ?: "-"
         val cabang = intent.getStringExtra("cabang") ?: "-"
@@ -59,7 +60,6 @@ class NotaActivity : AppCompatActivity() {
 
         val formatter = NumberFormat.getInstance(Locale("id", "ID"))
 
-        // Format tampilan teks nota monoton di layar HP
         val nota = """
 Cabang  : $cabang
 Kasir   : $kasir
@@ -77,7 +77,6 @@ Kembali : Rp ${formatter.format(kembali)}
 
         tvNota.text = nota
 
-        // Aksi tombol bagikan teks nota ke aplikasi lain (WA, dll)
         btnBagikan.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -88,15 +87,12 @@ Kembali : Rp ${formatter.format(kembali)}
             startActivity(shareIntent)
         }
 
-        // Aksi tombol cetak langsung menggunakan data printer dari PrinterActivity
         btnCetak.setOnClickListener {
-            // 1. Cek Permission koneksi Bluetooth (Android 12+)
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.BLUETOOTH_CONNECT), 1)
                 return@setOnClickListener
             }
 
-            // 2. Ambil data alamat MAC Printer dari SharedPreferences halaman pengaturan printer
             val shared = getSharedPreferences("PRINTER", MODE_PRIVATE)
             val printerAddress = shared.getString("address", "-")
 
@@ -106,7 +102,6 @@ Kembali : Rp ${formatter.format(kembali)}
             }
 
             try {
-                // 3. Cari Perangkat Bluetooth berdasarkan MAC address
                 val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
                 val bluetoothAdapter = bluetoothManager.adapter
                 val device = bluetoothAdapter?.getRemoteDevice(printerAddress)
@@ -115,11 +110,8 @@ Kembali : Rp ${formatter.format(kembali)}
                     Toast.makeText(this, "Menghubungkan ke ${device.name ?: "Printer"}...", Toast.LENGTH_SHORT).show()
 
                     val connection = BluetoothConnection(device)
-                    // Menggunakan setting ukuran 58f standar (32 karakter per baris)
                     val printer = EscPosPrinter(connection, 203, 58f, 32)
 
-                    // Format cetak thermal terstruktur rapi rata kiri-kanan
-                    // Menggunakan [C] untuk Center, [L] untuk Left, [R] untuk Right
                     val formatCetak = """
                         [C]<b>POS STORE</b>
                         [C]$alamatCabang
@@ -149,6 +141,12 @@ Kembali : Rp ${formatter.format(kembali)}
             } catch (e: Exception) {
                 Toast.makeText(this, "Gagal mencetak: ${e.message}", Toast.LENGTH_LONG).show()
             }
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 }

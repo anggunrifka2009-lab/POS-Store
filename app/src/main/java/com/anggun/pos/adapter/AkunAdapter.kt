@@ -12,21 +12,21 @@ class AkunAdapter(
     private val listAkun: ArrayList<ModelAkun>
 ) : RecyclerView.Adapter<AkunAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View)
+    class ViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
 
-        val tvNama =
-            itemView.findViewById<TextView>(
+        val tvNama: TextView =
+            itemView.findViewById(
                 R.id.tvNamaAkun
             )
 
-        val tvEmail =
-            itemView.findViewById<TextView>(
+        val tvEmail: TextView =
+            itemView.findViewById(
                 R.id.tvEmailAkun
             )
 
-        val tvRole =
-            itemView.findViewById<TextView>(
+        val tvRole: TextView =
+            itemView.findViewById(
                 R.id.tvRoleAkun
             )
     }

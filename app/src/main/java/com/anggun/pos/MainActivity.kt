@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.anggun.pos.cabang.DataCabangActivity
 import com.anggun.pos.kategori.DataKategoriActivity
 import com.anggun.pos.produk.DataProdukActivity
@@ -14,21 +17,20 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        // Cek Login: Jika belum login, lempar ke LoginActivity
+
         if (FirebaseAuth.getInstance().currentUser == null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             return
         }
 
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
         val tvSapaan: TextView = findViewById(R.id.tvSapaan)
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvCabang.setOnClickListener {
-            val intent = Intent(this, com.anggun.pos.cabang.DataCabangActivity::class.java)
+            val intent = Intent(this, DataCabangActivity::class.java)
             startActivity(intent)
         }
 
@@ -87,13 +89,16 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PrinterActivity::class.java)
             startActivity(intent)
         }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
-
     private fun setupSapaanOtomatis(textView: TextView) {
-
         val jam = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-
         val sapaan = when (jam) {
             in 5..10 -> "Selamat Pagi"
             in 11..14 -> "Selamat Siang"
@@ -107,41 +112,28 @@ class MainActivity : AppCompatActivity() {
         textView.text = "$sapaan, $nama"
     }
 
-
     private fun setupTanggalOtomatis(textView: TextView) {
-
         val calendar = Calendar.getInstance().time
-
         val dateFormat = SimpleDateFormat(
             "EEEE, dd MMMM yyyy",
             Locale("id", "ID")
         )
-
         val formattedDate = dateFormat.format(calendar)
-
         textView.text = formattedDate
     }
 
-
     private fun setupEstimasiPendapatan(textView: TextView) {
-
         val estimasi = (200000..1500000).random()
-
-        textView.text =
-            "Estimasi hari ini Rp ${formatRupiah(estimasi)}"
+        textView.text = "Estimasi hari ini Rp ${formatRupiah(estimasi)}"
     }
 
-
     private fun formatRupiah(number: Int): String {
-
         return NumberFormat
             .getNumberInstance(Locale("id", "ID"))
             .format(number)
     }
 
-
     private fun showToast(message: String) {
-
         Toast.makeText(
             this,
             message,

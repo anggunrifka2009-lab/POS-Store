@@ -8,7 +8,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.anggun.pos.model.ModelPegawai
 import com.google.firebase.database.FirebaseDatabase
 
@@ -26,6 +29,7 @@ class TambahPegawaiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_tambah_pegawai)
 
         init()
@@ -35,6 +39,7 @@ class TambahPegawaiActivity : AppCompatActivity() {
             finish()
         }
 
+        @Suppress("DEPRECATION")
         val dataIntent = intent.getParcelableExtra<ModelPegawai>("DATA_PEGAWAI")
         if (dataIntent != null) {
             setupModeEdit(dataIntent)
@@ -42,6 +47,12 @@ class TambahPegawaiActivity : AppCompatActivity() {
 
         btnSimpan.setOnClickListener {
             cekValidasi()
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 
@@ -56,7 +67,7 @@ class TambahPegawaiActivity : AppCompatActivity() {
     }
 
     private fun setupRoleDropdown() {
-        val roles = arrayOf("Admin", "Kasir", "Manajer")
+        val roles = arrayOf("Admin", "Kasir")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, roles)
         actvRole.setAdapter(adapter)
     }
