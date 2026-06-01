@@ -10,8 +10,10 @@ import com.anggun.pos.model.ModelRiwayat
 import java.text.NumberFormat
 import java.util.Locale
 
-class RiwayatAdapter(private val list: List<ModelRiwayat>) :
-    RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
+class RiwayatAdapter(
+    private val list: List<ModelRiwayat>,
+    private val onClick: (ModelRiwayat) -> Unit
+) : RecyclerView.Adapter<RiwayatAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvId: TextView = view.findViewById(R.id.tvIdTransaksi)
@@ -32,6 +34,10 @@ class RiwayatAdapter(private val list: List<ModelRiwayat>) :
         holder.tvWaktu.text = "${item.tanggal} | ${item.jam}"
         holder.tvKasir.text = "Kasir: ${item.kasir}"
         holder.tvTotal.text = "Rp ${formatRupiah(item.total ?: 0)}"
+
+        holder.itemView.setOnClickListener {
+            onClick(item)
+        }
     }
 
     override fun getItemCount(): Int = list.size

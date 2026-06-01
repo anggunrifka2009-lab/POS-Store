@@ -1,5 +1,6 @@
 package com.anggun.pos
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -34,7 +35,9 @@ class RiwayatActivity : AppCompatActivity() {
         ivKembali.setOnClickListener { finish() }
 
         rvRiwayat.layoutManager = LinearLayoutManager(this)
-        adapterRiwayat = RiwayatAdapter(listRiwayat)
+        adapterRiwayat = RiwayatAdapter(listRiwayat) { riwayat ->
+            showNota(riwayat)
+        }
         rvRiwayat.adapter = adapterRiwayat
 
         fetchRiwayatTransaksi()
@@ -64,5 +67,41 @@ class RiwayatActivity : AppCompatActivity() {
                 Toast.makeText(this@RiwayatActivity, "Gagal memuat riwayat", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun showNota(riwayat: ModelRiwayat) {
+        val idTransaksi = riwayat.idTransaksi ?: return
+        
+        // Ambil data items untuk nota
+        database.child("transaksi").child(idTransaksi).child("items")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val listItems = StringBuilder()
+                    for (item in snapshot.children) {
+                        val namaProduk = item.child("namaProduk").value?.toString() ?: ""
+                        val qty = item.child("qty").value?.toString()?.toIntOrNull() ?: 0
+                        val harga = item.child("harga").value?.toString()?.toIntOrNull() ?: 0
+                        val subtotal = item.child("subtotal").value?.toString()?.toIntOrNull() ?: 0
+                        
+                        listItems.append("$namaProduk\n")
+                        listItems.append("$qty x Rp $harga = Rp $subtotal\n")
+                    }
+
+                    val intent = Intent(this@RiwayatActivity, NotaActivity::class.java)
+                    intent.putExtra("kasir", riwayat.kasir)
+                    intent.putExtra("cabang", riwayat.cabang)
+                    intent.putExtra("alamat_cabang", riwayat.alamat_cabang)
+                    intent.putExtra("tanggal", riwayat.tanggal)
+                    intent.putExtra("jam", riwayat.jam)
+                    intent.putExtra("total", riwayat.total)
+                    intent.putExtra("bayar", riwayat.bayar)
+                    intent.putExtra("items", listItems.toString())
+                    startActivity(intent)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@RiwayatActivity, "Gagal memuat detail nota", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 }
