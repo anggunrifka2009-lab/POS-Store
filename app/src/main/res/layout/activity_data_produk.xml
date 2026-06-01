@@ -35,10 +35,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="?attr/colorSurface">
+            android:layout_height="35dp">
 
             <EditText
                 android:id="@+id/etSearchPro"
@@ -47,7 +44,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="7dp"
                 android:background="@android:color/transparent"
-                android:hint="Cari produk..."
+                android:hint="Cari cabang..."
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textSize="14sp" />
