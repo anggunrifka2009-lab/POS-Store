@@ -38,31 +38,6 @@
                 android:padding="24dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="POS STORE"
-                    android:textColor="?attr/color"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-
-                <TextView
-                    android:id="@+id/tvAlamatNota"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Jl. Raya Utama No. 123"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#BDBDBD"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
                     android:id="@+id/tvNota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -71,30 +46,6 @@
                     android:fontFamily="monospace"
                     android:lineSpacingExtra="4dp"
                     android:text="Memuat nota..." />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#BDBDBD"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Terima Kasih"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="14sp"
-                    android:textStyle="italic"
-                    android:gravity="center" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Silakan Datang Kembali"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:gravity="center" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Pilih Cabang"
                 android:inputType="none"
-                android:textColor="?attr/colorSurface"
+                android:textColor="?attr/color"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -100,7 +100,7 @@
             android:id="@+id/etCariProduk"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@android:color/transparent"
+            android:background="?attr/colorSurface"
             android:hint="Cari produk..."
             android:importantForAutofill="no"
             android:gravity="center_vertical"

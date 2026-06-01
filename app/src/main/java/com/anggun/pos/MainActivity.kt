@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var tvEstimasi: TextView
+    private var tvJudulEstimasi: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         val tvSapaan: TextView = findViewById(R.id.tvSapaan)
         val tvTanggal: TextView = findViewById(R.id.tvTanggal)
         tvEstimasi = findViewById(R.id.tvEstimasi)
+        tvJudulEstimasi = findViewById(R.id.tvJudulEstimasi)
 
         val llTransaksi: LinearLayout = findViewById(R.id.llTransaksi)
         val llRiwayat: LinearLayout = findViewById(R.id.llRiwayat)
@@ -133,14 +135,19 @@ class MainActivity : AppCompatActivity() {
         database.child("transaksi").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var totalEstimasi = 0
+                var jumlahTransaksi = 0
                 for (data in snapshot.children) {
                     val tanggal = data.child("tanggal").value?.toString()
                     val total = data.child("total").value?.toString()?.toIntOrNull() ?: 0
                     if (tanggal == today) {
                         totalEstimasi += total
+                        jumlahTransaksi++
                     }
                 }
                 tvEstimasi.text = "Rp ${formatRupiah(totalEstimasi)}"
+                
+                // Update label judul untuk menampilkan jumlah transaksi
+                tvJudulEstimasi?.text = "Estimasi Hari Ini ($jumlahTransaksi Transaksi)"
             }
             override fun onCancelled(error: DatabaseError) {}
         })

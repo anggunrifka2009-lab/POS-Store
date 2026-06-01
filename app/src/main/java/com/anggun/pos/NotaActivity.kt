@@ -24,7 +24,6 @@ import java.util.Locale
 
 class NotaActivity : AppCompatActivity() {
 
-    private lateinit var tvAlamatNota: TextView
     private lateinit var tvNota: TextView
     private lateinit var btnBagikan: Button
     private lateinit var btnCetak: Button
@@ -35,7 +34,6 @@ class NotaActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_nota)
 
-        tvAlamatNota = findViewById(R.id.tvAlamatNota)
         tvNota = findViewById(R.id.tvNota)
         btnBagikan = findViewById(R.id.btnBagikan)
         btnCetak = findViewById(R.id.btnCetak)
@@ -56,15 +54,16 @@ class NotaActivity : AppCompatActivity() {
         val bayar = intent.getIntExtra("bayar", 0)
         val kembali = bayar - total
 
-        tvAlamatNota.text = alamatCabang
-
         val formatter = NumberFormat.getInstance(Locale("id", "ID"))
 
         val nota = """
-Cabang  : $cabang
-Kasir   : $kasir
-Tanggal : $tanggal
-Jam     : $jam
+[C]<b>POS STORE</b>
+[C]$alamatCabang
+[C]--------------------------------
+[L]Cabang  : $cabang
+[L]Kasir   : $kasir
+[L]Tanggal : $tanggal
+[L]Jam     : $jam
 
 --------------------------------
 ${items.trim()}
@@ -73,14 +72,24 @@ Total   : Rp ${formatter.format(total)}
 Bayar   : Rp ${formatter.format(bayar)}
 Kembali : Rp ${formatter.format(kembali)}
 --------------------------------
+[C]Terima Kasih
+[C]Silakan Datang Kembali
         """.trimIndent()
 
-        tvNota.text = nota
+
+        val notaTampilan = nota
+            .replace("[C]", "")
+            .replace("[L]", "")
+            .replace("[R]", "")
+            .replace("<b>", "")
+            .replace("</b>", "")
+
+        tvNota.text = notaTampilan
 
         btnBagikan.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, nota)
+                putExtra(Intent.EXTRA_TEXT, notaTampilan)
                 type = "text/plain"
             }
             val shareIntent = Intent.createChooser(sendIntent, "Bagikan Nota Melalui:")
@@ -112,26 +121,12 @@ Kembali : Rp ${formatter.format(kembali)}
                     val connection = BluetoothConnection(device)
                     val printer = EscPosPrinter(connection, 203, 58f, 32)
 
-                    val formatCetak = """
-                        [C]<b>POS STORE</b>
-                        [C]$alamatCabang
-                        [C]--------------------------------
-                        [L]Cabang  : $cabang
-                        [L]Kasir   : $kasir
-                        [L]Tanggal : $tanggal
-                        [L]Jam     : $jam
-                        [C]--------------------------------
-                        [L]${items.trim().replace("\n", "\n[L]")}
-                        [C]--------------------------------
-                        [L]Total   : [R]Rp ${formatter.format(total)}
-                        [L]Bayar   : [R]Rp ${formatter.format(bayar)}
-                        [L]Kembali : [R]Rp ${formatter.format(kembali)}
-                        [C]--------------------------------
-                        [C]Terima Kasih
-                        [C]Silakan Datang Kembali
-                        [L]\n
-                        [L]\n
-                    """.trimIndent()
+
+                    val formatCetak = nota
+                        .replace("\n", "\n[L]")
+                        .replace("[C][L]", "[C]")
+                        .replace("[L][L]", "[L]")
+                        .replace("[R][L]", "[R]") + "\n[L]\n[L]\n"
 
                     printer.printFormattedText(formatCetak)
                     Toast.makeText(this, "Nota berhasil dicetak!", Toast.LENGTH_SHORT).show()
