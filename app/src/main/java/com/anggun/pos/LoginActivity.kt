@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -24,13 +27,14 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
 
-        // Auto-login: If already logged in, go to MainActivity
+        // Auto-login: Jika sudah login, langsung ke MainActivity
         if (auth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
             return
         }
 
+        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
         etEmail = findViewById(R.id.etEmail)
@@ -67,6 +71,12 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
         }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     private fun fetchUserData(uid: String) {
@@ -91,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("nama", namaDefault)
                     editor.putString("role", "Admin")
                     editor.apply()
-                    
+
                     Toast.makeText(this@LoginActivity, "Login berhasil sebagai $namaDefault", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
