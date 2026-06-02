@@ -8,5 +8,6 @@ data class ModelTransaksi(
     var tanpaBatas: Boolean? = false,
     var idKategori: String? = "",
     var idCabang: String? = "",
+    var statusProduk: String? = "",
     var qty: Int = 0
 )

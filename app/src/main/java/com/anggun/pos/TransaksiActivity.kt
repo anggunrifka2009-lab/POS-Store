@@ -159,13 +159,22 @@ class TransaksiActivity : AppCompatActivity() {
                 listModelCabang.clear()
                 for (data in snapshot.children) {
                     val cabang = data.getValue(ModelCabang::class.java)
-                    if (cabang != null) {
+                    if (cabang != null && cabang.status == "Aktif") {
                         listModelCabang.add(cabang)
                         listCabang.add(cabang.namaCabang ?: "Unknown")
                     }
                 }
                 val adapterCabang = ArrayAdapter(this@TransaksiActivity, android.R.layout.simple_list_item_1, listCabang)
                 spCabang.setAdapter(adapterCabang)
+
+                // Jika cabang yang sedang terpilih tiba-tiba tidak aktif
+                if (!listCabang.contains(selectedCabang)) {
+                    selectedCabang = ""
+                    selectedAlamatCabang = ""
+                    spCabang.setText("", false)
+                    tvSubJudul.text = "PointOfSales"
+                    filterProduk(etCariProduk.text.toString())
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -196,7 +205,14 @@ class TransaksiActivity : AppCompatActivity() {
                 }
                 val adapterKategori = ArrayAdapter(this@TransaksiActivity, android.R.layout.simple_list_item_1, listKategori)
                 spKategori.setAdapter(adapterKategori)
-                spKategori.setText(listKategori[0], false)
+                
+                // Jika kategori yang sedang terpilih tiba-tiba tidak aktif, reset ke "Semua Kategori"
+                if (!listKategori.contains(selectedKategori)) {
+                    selectedKategori = "Semua Kategori"
+                    spKategori.setText("Semua Kategori", false)
+                }
+                
+                filterProduk(etCariProduk.text.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -245,9 +261,18 @@ class TransaksiActivity : AppCompatActivity() {
         val filteredList = listProdukFull.filter {
             val matchesQuery = it.namaProduk?.lowercase()?.contains(query.lowercase()) == true
             val matchesCabang = it.idCabang == selectedCabang || it.idCabang == "Semua Cabang"
-            val matchesKategori = selectedKategori == "Semua Kategori" || it.idKategori == selectedKategori
+            val matchesStatus = it.statusProduk == "Aktif"
             
-            matchesQuery && matchesCabang && matchesKategori
+            // Produk harus memiliki kategori yang sedang aktif
+            val isKategoriAktif = listKategori.contains(it.idKategori)
+            
+            val matchesKategori = if (selectedKategori == "Semua Kategori") {
+                isKategoriAktif
+            } else {
+                it.idKategori == selectedKategori
+            }
+            
+            matchesQuery && matchesCabang && matchesStatus && matchesKategori
         }
         listProduk.clear()
         listProduk.addAll(filteredList)

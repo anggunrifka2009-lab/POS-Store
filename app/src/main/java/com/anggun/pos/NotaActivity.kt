@@ -57,10 +57,9 @@ class NotaActivity : AppCompatActivity() {
         val formatter = NumberFormat.getInstance(Locale("id", "ID"))
 
         val nota = """
-[C]<b>POS STORE</b>
+[C]<b>${cabang.uppercase()}</b>
 [C]$alamatCabang
 [C]--------------------------------
-[L]Cabang  : $cabang
 [L]Kasir   : $kasir
 [L]Tanggal : $tanggal
 [L]Jam     : $jam
@@ -76,20 +75,33 @@ Kembali : Rp ${formatter.format(kembali)}
 [C]Silakan Datang Kembali
         """.trimIndent()
 
+        val notaTampilanHtml = nota
+            .split("\n")
+            .joinToString("<br>") { line ->
+                if (line.contains("[C]")) {
+                    val cleanText = line.replace("[C]", "").replace("<b>", "").replace("</b>", "")
+                    val paddingSize = (32 - cleanText.length) / 2
+                    val spaces = if (paddingSize > 0) "&nbsp;".repeat(paddingSize) else ""
+                    val content = line.replace("[C]", "")
+                    spaces + content
+                } else {
+                    line.replace("[L]", "").replace("[R]", "")
+                }
+            }
 
-        val notaTampilan = nota
-            .replace("[C]", "")
-            .replace("[L]", "")
-            .replace("[R]", "")
-            .replace("<b>", "")
-            .replace("</b>", "")
-
-        tvNota.text = notaTampilan
+        tvNota.text = android.text.Html.fromHtml(notaTampilanHtml, android.text.Html.FROM_HTML_MODE_LEGACY)
 
         btnBagikan.setOnClickListener {
+            val notaPolos = nota
+                .replace("[C]", "")
+                .replace("[L]", "")
+                .replace("[R]", "")
+                .replace("<b>", "")
+                .replace("</b>", "")
+            
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, notaTampilan)
+                putExtra(Intent.EXTRA_TEXT, notaPolos)
                 type = "text/plain"
             }
             val shareIntent = Intent.createChooser(sendIntent, "Bagikan Nota Melalui:")
