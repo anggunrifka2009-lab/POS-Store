@@ -70,4 +70,8 @@ class DataCabangViewModel : ViewModel() {
             isSearchEmpty.value = filteredList.isEmpty()
         }
     }
+
+    fun hapusCabang(id: String) {
+        myRef.child(id).removeValue()
+    }
 }

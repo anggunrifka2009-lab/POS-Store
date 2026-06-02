@@ -53,9 +53,30 @@ class PegawaiActivity : AppCompatActivity() {
             adapter.setOnItemClickListener(object : PegawaiAdapter.OnItemClickListener {
                 override fun onItemClick(pegawai: ModelPegawai) {
                     if (!pegawai.idPegawai.isNullOrBlank()) {
-                        val intent = Intent(this@PegawaiActivity, TambahPegawaiActivity::class.java)
-                        intent.putExtra("DATA_PEGAWAI", pegawai)
-                        startActivity(intent)
+                        val options = arrayOf("Edit", "Hapus")
+                        androidx.appcompat.app.AlertDialog.Builder(this@PegawaiActivity)
+                            .setTitle("Pilih Aksi")
+                            .setItems(options) { _, which ->
+                                when (which) {
+                                    0 -> {
+                                        val intent = Intent(this@PegawaiActivity, TambahPegawaiActivity::class.java)
+                                        intent.putExtra("DATA_PEGAWAI", pegawai)
+                                        startActivity(intent)
+                                    }
+                                    1 -> {
+                                        androidx.appcompat.app.AlertDialog.Builder(this@PegawaiActivity)
+                                            .setTitle("Hapus Pegawai")
+                                            .setMessage("Apakah Anda yakin ingin menghapus ${pegawai.nama}?")
+                                            .setPositiveButton("Ya") { _, _ ->
+                                                viewModel.hapusPegawai(pegawai.idPegawai!!)
+                                                Toast.makeText(this@PegawaiActivity, "Pegawai dihapus", Toast.LENGTH_SHORT).show()
+                                            }
+                                            .setNegativeButton("Tidak", null)
+                                            .show()
+                                    }
+                                }
+                            }
+                            .show()
                     } else {
                         Toast.makeText(this@PegawaiActivity, "ID Kosong", Toast.LENGTH_SHORT).show()
                     }

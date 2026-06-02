@@ -70,4 +70,8 @@ class DataKategoriViewModel : ViewModel() {
             isSearchEmpty.value = filteredList.isEmpty()
         }
     }
+
+    fun hapusKategori(id: String) {
+        myRef.child(id).removeValue()
+    }
 }

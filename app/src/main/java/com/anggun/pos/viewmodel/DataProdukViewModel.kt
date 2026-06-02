@@ -141,4 +141,8 @@ class DataProdukViewModel : ViewModel() {
                 ArrayList(filteredList)
         }
     }
+
+    fun hapusProduk(id: String) {
+        myRef.child(id).removeValue()
+    }
 }

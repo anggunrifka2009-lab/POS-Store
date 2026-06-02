@@ -53,9 +53,30 @@ class DataKategoriActivity : AppCompatActivity() {
             adapter.setOnItemClickListener(object : KategoriAdapter.OnItemClickListener {
                 override fun onItemClick(kategori: ModelKategori) {
                     if (!kategori.idkategori.isNullOrBlank()) {
-                        val intent = Intent(this@DataKategoriActivity, ModKategoriActivity::class.java)
-                        intent.putExtra("DATA_KATEGORI", kategori)
-                        startActivity(intent)
+                        val options = arrayOf("Edit", "Hapus")
+                        androidx.appcompat.app.AlertDialog.Builder(this@DataKategoriActivity)
+                            .setTitle("Pilih Aksi")
+                            .setItems(options) { _, which ->
+                                when (which) {
+                                    0 -> { // Edit
+                                        val intent = Intent(this@DataKategoriActivity, ModKategoriActivity::class.java)
+                                        intent.putExtra("DATA_KATEGORI", kategori)
+                                        startActivity(intent)
+                                    }
+                                    1 -> { // Hapus
+                                        androidx.appcompat.app.AlertDialog.Builder(this@DataKategoriActivity)
+                                            .setTitle("Hapus Kategori")
+                                            .setMessage("Apakah Anda yakin ingin menghapus ${kategori.namaKategori}?")
+                                            .setPositiveButton("Ya") { _, _ ->
+                                                viewModel.hapusKategori(kategori.idkategori!!)
+                                                Toast.makeText(this@DataKategoriActivity, "Kategori dihapus", Toast.LENGTH_SHORT).show()
+                                            }
+                                            .setNegativeButton("Tidak", null)
+                                            .show()
+                                    }
+                                }
+                            }
+                            .show()
                     } else {
                         Toast.makeText(this@DataKategoriActivity, "ID Kosong", Toast.LENGTH_SHORT).show()
                     }

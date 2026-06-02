@@ -58,9 +58,30 @@ class DataCabangActivity : AppCompatActivity() {
             adapter.setOnItemClickListener(object : CabangAdapter.OnItemClickListener {
                 override fun onItemClick(cabang: ModelCabang) {
                     if (!cabang.idcabang.isNullOrBlank()) {
-                        val intent = Intent(this@DataCabangActivity, ModCabangActivity::class.java)
-                        intent.putExtra("DATA_CABANG", cabang)
-                        startActivity(intent)
+                        val options = arrayOf("Edit", "Hapus")
+                        androidx.appcompat.app.AlertDialog.Builder(this@DataCabangActivity)
+                            .setTitle("Pilih Aksi")
+                            .setItems(options) { _, which ->
+                                when (which) {
+                                    0 -> {
+                                        val intent = Intent(this@DataCabangActivity, ModCabangActivity::class.java)
+                                        intent.putExtra("DATA_CABANG", cabang)
+                                        startActivity(intent)
+                                    }
+                                    1 -> {
+                                        androidx.appcompat.app.AlertDialog.Builder(this@DataCabangActivity)
+                                            .setTitle("Hapus Cabang")
+                                            .setMessage("Apakah Anda yakin ingin menghapus ${cabang.namaCabang}?")
+                                            .setPositiveButton("Ya") { _, _ ->
+                                                viewModel.hapusCabang(cabang.idcabang!!)
+                                                Toast.makeText(this@DataCabangActivity, "Cabang dihapus", Toast.LENGTH_SHORT).show()
+                                            }
+                                            .setNegativeButton("Tidak", null)
+                                            .show()
+                                    }
+                                }
+                            }
+                            .show()
                     } else {
                         Toast.makeText(this@DataCabangActivity, "ID Kosong", Toast.LENGTH_SHORT).show()
                     }

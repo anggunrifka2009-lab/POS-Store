@@ -46,4 +46,10 @@ class DataPegawaiViewModel : ViewModel() {
             _pegawaiList.value = filtered
         }
     }
+
+    fun hapusPegawai(id: String) {
+        dbRef.child(id).removeValue()
+        // Juga hapus dari node akun
+        FirebaseDatabase.getInstance().getReference("akun").child(id).removeValue()
+    }
 }
