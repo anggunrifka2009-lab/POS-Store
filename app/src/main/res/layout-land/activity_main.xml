@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvSapaan"
@@ -40,50 +41,49 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="24dp"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:strokeColor="#AAAAAA">
+                app:strokeColor="#AAAAAA"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:padding="20dp"
-
-                    android:gravity="center_vertical">
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tvJudulEstimasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Estimasi Hari Ini"
-                        android:textSize="16sp"
-                        android:textColor="#757575"/>
+                        android:textColor="#757575"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvEstimasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp. 0"
+                        android:textColor="?attr/colorAccent"
                         android:textSize="36sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorAccent"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#AAAAAA"
-                        android:layout_marginVertical="16dp"/>
+                        android:layout_marginVertical="16dp"
+                        android:background="#AAAAAA" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -95,26 +95,27 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="12dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:focusable="true">
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="12dp">
 
                             <ImageView
                                 android:layout_width="55dp"
                                 android:layout_height="55dp"
                                 android:src="@drawable/img_9"
-                                app:tint="?attr/colorAccent"/>
+                                app:tint="?attr/colorAccent" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Transaksi"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
                                 android:layout_marginTop="8dp"
-                                android:textColor="?attr/colorAccent"/>
+                                android:text="Transaksi"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -122,26 +123,27 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="12dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:focusable="true">
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="12dp">
 
                             <ImageView
                                 android:layout_width="55dp"
                                 android:layout_height="55dp"
                                 android:src="@drawable/img_10"
-                                app:tint="?attr/colorAccent"/>
+                                app:tint="?attr/colorAccent" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Riwayat"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
                                 android:layout_marginTop="8dp"
-                                android:textColor="?attr/colorAccent"/>
+                                android:text="Riwayat"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -150,18 +152,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Semangat jualan hari ini! Semoga berkah dan laris manis."
-                        android:textSize="12sp"
-                        android:textStyle="italic"
+                        android:textAlignment="center"
                         android:textColor="#757575"
-                        android:textAlignment="center"/>
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
                 android:layout_marginStart="24dp"
+                android:layout_weight="1.5"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -174,18 +176,32 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_11" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akun" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img_11"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Akun"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -193,20 +209,34 @@
                         android:id="@+id/cvProduk"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_14" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Produk" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img_14"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Produk"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -214,20 +244,34 @@
                         android:id="@+id/cvKategori"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_13" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kategori" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img_13"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Kategori"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
@@ -243,18 +287,32 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_2" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pegawai" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img_2"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Pegawai"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -262,20 +320,34 @@
                         android:id="@+id/cvCabang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_7" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cabang" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img_7"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Cabang"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -283,20 +355,34 @@
                         android:id="@+id/cvPrinter"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#AAAAAA"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:strokeWidth="1dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
                             android:gravity="center"
+                            android:orientation="vertical"
                             android:padding="20dp">
-                            <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img" app:tint="?attr/colorAccent"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Printer" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/img"
+                                app:tint="?attr/colorAccent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Printer"
+                                android:textColor="?attr/colorAccent"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
