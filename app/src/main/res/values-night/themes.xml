@@ -10,6 +10,8 @@
         <item name="color">#FFFFFF</item>
 
         <item name="colorOnSurface">#BDBDBD</item>
+
+        <item name="colorAccent">#BCAAA4</item>
     </style>
 
 </resources>

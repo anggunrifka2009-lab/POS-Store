@@ -36,6 +36,9 @@
 
         </activity>
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".PegawaiActivity"
             android:exported="false" />
         <activity

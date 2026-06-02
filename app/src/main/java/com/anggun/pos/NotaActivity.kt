@@ -1,18 +1,17 @@
 package com.anggun.pos
 
 import android.Manifest
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -27,7 +26,7 @@ class NotaActivity : AppCompatActivity() {
     private lateinit var tvNota: TextView
     private lateinit var btnBagikan: Button
     private lateinit var btnCetak: Button
-    private lateinit var toolbar: Toolbar
+    private lateinit var ivKembali: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +36,11 @@ class NotaActivity : AppCompatActivity() {
         tvNota = findViewById(R.id.tvNota)
         btnBagikan = findViewById(R.id.btnBagikan)
         btnCetak = findViewById(R.id.btnCetak)
-        toolbar = findViewById(R.id.toolbar)
+        ivKembali = findViewById<ImageView>(R.id.ivKembali)
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        ivKembali.setOnClickListener {
+            finish()
+        }
 
         val alamatCabang = intent.getStringExtra("alamat_cabang") ?: "Alamat Belum Diatur"
         val kasir = intent.getStringExtra("kasir") ?: "-"
@@ -109,15 +107,25 @@ Kembali : Rp ${formatter.format(kembali)}
         }
 
         btnCetak.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.BLUETOOTH_CONNECT), 1)
+            val permissions = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN)
+            } else {
+                arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN)
+            }
+
+            val missingPermissions = permissions.filter {
+                ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+            }
+
+            if (missingPermissions.isNotEmpty()) {
+                ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), 1)
                 return@setOnClickListener
             }
 
             val shared = getSharedPreferences("PRINTER", MODE_PRIVATE)
             val printerAddress = shared.getString("address", "-")
 
-            if (printerAddress == "-") {
+            if (printerAddress == "-" || printerAddress.isNullOrEmpty()) {
                 Toast.makeText(this, "Printer belum diatur! Silakan hubungkan di pengaturan.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -125,27 +133,52 @@ Kembali : Rp ${formatter.format(kembali)}
             try {
                 val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
                 val bluetoothAdapter = bluetoothManager.adapter
-                val device = bluetoothAdapter?.getRemoteDevice(printerAddress)
+                
+                if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
+                    Toast.makeText(this, "Bluetooth tidak aktif!", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                val device = bluetoothAdapter.getRemoteDevice(printerAddress)
 
                 if (device != null) {
-                    Toast.makeText(this, "Menghubungkan ke ${device.name ?: "Printer"}...", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this, "Menghubungkan ke printer...", Toast.LENGTH_SHORT).show()
+                    
                     val connection = BluetoothConnection(device)
                     val printer = EscPosPrinter(connection, 203, 58f, 32)
 
+                    val sb = StringBuilder()
+                    sb.append("[C]<b>${cabang.uppercase()}</b>\n")
+                    sb.append("[C]$alamatCabang\n")
+                    sb.append("[C]--------------------------------\n")
+                    sb.append("[L]Kasir   : $kasir\n")
+                    sb.append("[L]Tanggal : $tanggal\n")
+                    sb.append("[L]Jam     : $jam\n")
+                    sb.append("[L]\n")
+                    sb.append("[C]--------------------------------\n")
+                    
+                    items.trim().split("\n").forEach { line ->
+                        if (line.isNotEmpty()) {
+                            sb.append("[L]$line\n")
+                        }
+                    }
+                    
+                    sb.append("[C]--------------------------------\n")
+                    sb.append("[L]Total   : Rp ${formatter.format(total)}\n")
+                    sb.append("[L]Bayar   : Rp ${formatter.format(bayar)}\n")
+                    sb.append("[L]Kembali : Rp ${formatter.format(kembali)}\n")
+                    sb.append("[C]--------------------------------\n")
+                    sb.append("[C]Terima Kasih\n")
+                    sb.append("[C]Silakan Datang Kembali\n")
+                    sb.append("\n\n\n")
 
-                    val formatCetak = nota
-                        .replace("\n", "\n[L]")
-                        .replace("[C][L]", "[C]")
-                        .replace("[L][L]", "[L]")
-                        .replace("[R][L]", "[R]") + "\n[L]\n[L]\n"
-
-                    printer.printFormattedText(formatCetak)
+                    printer.printFormattedText(sb.toString())
                     Toast.makeText(this, "Nota berhasil dicetak!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Gagal menemukan sinyal printer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal menemukan printer", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 Toast.makeText(this, "Gagal mencetak: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }

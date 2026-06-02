@@ -26,62 +26,78 @@ class DataProdukViewModel : ViewModel() {
     }
 
     fun getData() {
-
         isLoading.value = true
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        val kategoriRef = database.getReference("kategori")
+        val cabangRef = database.getReference("cabang")
 
-            override fun onDataChange(snapshot: DataSnapshot) {
+        kategoriRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(katSnapshot: DataSnapshot) {
+                val activeCategories = HashSet<String>()
+                for (kat in katSnapshot.children) {
+                    val nama = kat.child("namaKategori").value?.toString()
+                    val status = kat.child("status").value?.toString()
+                    if (nama != null && status == "Aktif") {
+                        activeCategories.add(nama)
+                    }
+                }
 
-                isLoading.value = false
-
-                val list = ArrayList<ModelProduk>()
-
-                if (snapshot.exists()) {
-
-                    for (dataSnapshot in snapshot.children) {
-
-                        val produk =
-                            dataSnapshot.getValue(
-                                ModelProduk::class.java
-                            )
-
-                        if (produk != null) {
-
-                            list.add(produk)
+                cabangRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(cabSnapshot: DataSnapshot) {
+                        val activeBranches = HashSet<String>()
+                        activeBranches.add("Semua Cabang")
+                        for (cab in cabSnapshot.children) {
+                            val nama = cab.child("namaCabang").value?.toString()
+                            val status = cab.child("status").value?.toString()
+                            if (nama != null && status == "Aktif") {
+                                activeBranches.add(nama)
+                            }
                         }
+
+                        myRef.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                isLoading.value = false
+                                val list = ArrayList<ModelProduk>()
+
+                                if (snapshot.exists()) {
+                                    for (dataSnapshot in snapshot.children) {
+                                        val produk = dataSnapshot.getValue(ModelProduk::class.java)
+                                        if (produk != null) {
+                                            // Cek apakah kategori DAN cabang produk tersebut aktif
+                                            val isKatAktif = activeCategories.contains(produk.idKategori)
+                                            val isCabAktif = activeBranches.contains(produk.idCabang)
+
+                                            if (isKatAktif && isCabAktif) {
+                                                list.add(produk)
+                                            }
+                                        }
+                                    }
+
+                                    originalProdukList.clear()
+                                    originalProdukList.addAll(list)
+                                    produkList.value = list
+                                    isSearchEmpty.value = list.isEmpty()
+                                } else {
+                                    originalProdukList.clear()
+                                    produkList.value = ArrayList()
+                                    isSearchEmpty.value = true
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                isLoading.value = false
+                            }
+                        })
                     }
 
-                    originalProdukList.clear()
-                    originalProdukList.addAll(list)
-
-                    produkList.value = list
-
-                    isSearchEmpty.value = list.isEmpty()
-
-                    Log.d(
-                        "DataProdukViewModel",
-                        "Jumlah produk: ${list.size}"
-                    )
-
-                } else {
-
-                    originalProdukList.clear()
-
-                    produkList.value = ArrayList()
-
-                    isSearchEmpty.value = true
-                }
+                    override fun onCancelled(error: DatabaseError) {
+                        isLoading.value = false
+                    }
+                })
             }
 
             override fun onCancelled(error: DatabaseError) {
-
                 isLoading.value = false
-
-                Log.e(
-                    "DataProdukViewModel",
-                    error.message
-                )
             }
         })
     }

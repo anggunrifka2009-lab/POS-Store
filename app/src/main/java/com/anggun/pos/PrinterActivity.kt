@@ -286,7 +286,6 @@ class PrinterActivity : AppCompatActivity() {
             printer.printFormattedText(
                 "[C]<u><font size='big'>TEST PRINT BERHASIL</font></u>\n" +
                         "[L]\n" +
-                        "[C]PointOfSales \n" +
                         "[C]================================\n" +
                         "[L]Tanggal: 22-05-2026\n" +
                         "[L]Jam    : 12:00\n" +
