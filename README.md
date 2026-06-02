@@ -1,4 +1,4 @@
-# 🛒 Aplikasi POS (Point of Sale)
+# 🛒 POS Store
 
 ![Android](https://img.shields.io/badge/Android-34A853?style=for-the-badge&logo=android&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
@@ -7,13 +7,13 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
-## 📖 Deskripsi
+## Deskripsi
 
 Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunakan untuk mengelola transaksi penjualan, produk, kategori, pegawai, dan cabang. Aplikasi ini juga dilengkapi fitur autentikasi pengguna dan pencetakan struk transaksi.
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 
 ### 📝 Registrasi
 
@@ -86,7 +86,27 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Role Pengguna
+
+### Admin
+- Mengelola seluruh data
+- Mengatur pegawai
+- Mengatur cabang
+- Melihat sama transaksi
+
+### Kasir
+- Melakukan transaksi
+- Melihat riwayat transaksi
+- Cetak nota
+
+### Manajer
+- Monitoring transaksi
+- Monitoring produk
+- Monitoring pegawai
+
+---
+
+## Teknologi yang Digunakan
 
 | Teknologi | Kegunaan |
 |-----------|----------|
@@ -164,4 +184,118 @@ Firebase Realtime Database
         └── nota
 
 ```
+
+
+## 🔄 Alur Sistem
+
+```text
+Register / Login
+        ↓
+Firebase Authentication
+        ↓
+Validasi Email & Password
+        ↓
+Ambil Data User dari Database
+        ↓
+Cek Role Pengguna
+        ↓
+Masuk ke Dashboard
+        ↓
+Admin / Kasir / Manajer
+        ↓
+Mengelola Data & Transaksi
+        ↓
+Data Disimpan ke Firebase
+```
+
+
+## 🚀 Cara Menjalankan Project
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/pos-store.git
+````
+
+---
+
+### 2. Buka Project di Android Studio
+
+* Buka Android Studio
+* Klik **Open**
+* Pilih folder project `pos-store`
+
+---
+
+### 3. Hubungkan Firebase
+
+### Tambahkan File Firebase
+
+Masukkan file:
+
+```text
+google-services.json
+```
+
+ke folder:
+
+```text
+app/
+```
+
+#### Aktifkan Firebase
+
+* Firebase Authentication
+* Firebase Realtime Database
+
+---
+
+### 4. Tambahkan Dependency
+
+```gradle
+implementation 'com.google.firebase:firebase-auth'
+implementation 'com.google.firebase:firebase-database'
+implementation 'com.google.android.material:material:1.11.0'
+implementation 'androidx.recyclerview:recyclerview:1.3.2'
+implementation 'com.github.bumptech.glide:glide:4.16.0'
+```
+
+---
+
+### 5. Sync Gradle
+
+Klik:
+
+```text
+Sync Now
+```
+
+---
+
+### 6. Jalankan Aplikasi
+
+Hubungkan emulator atau HP Android lalu klik:
+
+```text
+Run > app
+```
+
+atau tekan:
+
+```text
+Shift + F10
+```
+
+---
+
+### 7. Login Aplikasi
+
+Register akun terlebih dahulu lalu login menggunakan:
+
+* Email
+* Password
+
+Setelah login, user akan masuk ke dashboard sesuai role masing-masing.
+
+
 
