@@ -39,7 +39,7 @@
             app:cardElevation="4dp"
             app:strokeWidth="1dp"
             app:strokeColor="#AAAAAA"
-            android:backgroundTint="?attr/colorSurface"
+            app:cardBackgroundColor="?attr/colorSurface"
             android:layout_marginBottom="5dp">
 
             <LinearLayout
@@ -63,7 +63,7 @@
                     android:text="Rp. 0"
                     android:textSize="32sp"
                     android:textStyle="bold"
-                    android:textColor="#6D4C41"/>
+                    android:textColor="?attr/colorAccent"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:src="@drawable/img_9"
-                            app:tint="#6D4C41"/>
+                            app:tint="?attr/colorAccent"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                             android:textStyle="bold"
                             android:textSize="14sp"
                             android:layout_marginTop="6dp"
-                            android:textColor="#6D4C41"/>
+                            android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -119,7 +119,7 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:src="@drawable/img_10"
-                            app:tint="#6D4C41"/>
+                            app:tint="?attr/colorAccent"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                             android:textStyle="bold"
                             android:textSize="14sp"
                             android:layout_marginTop="6dp"
-                            android:textColor="#6D4C41"/>
+                            android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -151,15 +151,16 @@
                     android:layout_weight="1"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="16dp">
-                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_11" app:tint="#6D4C41"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akun" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_11" app:tint="?attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Akun" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -171,15 +172,16 @@
                     android:layout_marginStart="12dp"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="16dp">
-                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_14" app:tint="#6D4C41"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Produk" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_14" app:tint="?attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Produk" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -191,7 +193,8 @@
                     android:layout_marginStart="12dp"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -201,14 +204,15 @@
                         <ImageView android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:src="@drawable/img_13"
-                            app:tint="#6D4C41"/>
+                            app:tint="?attr/colorAccent"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Kategori"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                            android:layout_marginTop="8dp"
+                            android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -226,15 +230,16 @@
                     android:layout_weight="1"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="16dp">
-                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_2" app:tint="#6D4C41"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pegawai" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_2" app:tint="?attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pegawai" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -246,15 +251,16 @@
                     android:layout_marginStart="12dp"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="16dp">
-                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_7" app:tint="#6D4C41"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cabang" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img_7" app:tint="?attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cabang" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -266,15 +272,16 @@
                     android:layout_marginStart="12dp"
                     app:cardCornerRadius="16dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#AAAAAA">
+                    app:strokeColor="#AAAAAA"
+                    app:cardBackgroundColor="?attr/colorSurface">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="16dp">
-                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img" app:tint="#6D4C41"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Printer" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="#6D4C41"/>
+                        <ImageView android:layout_width="55dp" android:layout_height="55dp" android:src="@drawable/img" app:tint="?attr/colorAccent"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Printer" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="8dp" android:textColor="?attr/colorAccent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
