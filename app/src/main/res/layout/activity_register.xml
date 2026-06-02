@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="24dp"
         android:paddingTop="60dp">
 
@@ -26,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Buat akun baru "
             android:gravity="center"
+            android:text="Buat akun baru "
             android:textColor="#757575"
             android:textSize="14sp" />
 
@@ -42,24 +42,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/colorSurface"
                 android:orientation="vertical"
-                android:padding="24dp"
-                android:background="?attr/colorSurface">
+                android:padding="24dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nama Lengkap"
                     android:layout_marginBottom="16dp"
-                    app:strokeColor="?attr/colorSurface"
-                    app:hintTextColor="#6D4C41"
-                    app:startIconDrawable="@drawable/ic_account_circle"
-                    app:startIconTint="#6D4C41"
+                    android:hint="Nama Lengkap"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp">
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:hintTextColor="#6D4C41"
+                    app:startIconDrawable="@drawable/ic_account_circle"
+                    app:startIconTint="#6D4C41"
+                    app:strokeColor="?attr/colorSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNama"
@@ -75,16 +75,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
                     android:layout_marginBottom="16dp"
-                    app:strokeColor="?attr/colorSurface"
-                    app:hintTextColor="#6D4C41"
-                    app:startIconDrawable="@drawable/ic_account_circle"
-                    app:startIconTint="#6D4C41"
+                    android:hint="Email"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp">
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:hintTextColor="#6D4C41"
+                    app:startIconDrawable="@drawable/ic_account_circle"
+                    app:startIconTint="#6D4C41"
+                    app:strokeColor="?attr/colorSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
@@ -100,18 +100,18 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
                     android:layout_marginBottom="24dp"
-                    app:strokeColor="?attr/colorSurface"
+                    android:hint="Password"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
                     app:hintTextColor="#6D4C41"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="#6D4C41"
                     app:startIconDrawable="@drawable/ic_lock"
                     app:startIconTint="#6D4C41"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp">
+                    app:strokeColor="?attr/colorSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
@@ -128,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:backgroundTint="#6D4C41"
-                    android:text="Daftar"
+                    android:text="Daftar Sebagai Owner"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"

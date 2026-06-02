@@ -47,6 +47,8 @@ class RegisterActivity : AppCompatActivity() {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
+            val role = "Admin"
+
             if (nama.isEmpty()) {
                 etNama.error = "Nama wajib diisi"
                 return@setOnClickListener
@@ -83,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
                     userMap["uid"] = uid
                     userMap["nama"] = nama
                     userMap["email"] = email
-                    userMap["role"] = "Admin" // Default role
+                    userMap["role"] = "Admin"
 
                     database.child("akun").child(uid).setValue(userMap)
                         .addOnSuccessListener {
