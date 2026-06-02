@@ -16,37 +16,39 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 ## ✨ Fitur Utama
 
 ### 📝 Registrasi
+
 <img src="images/register.png" width="250">
 
 ### 🔐 Login
+
 <img src="images/login.png" width="250">
 
 ### 🏠 Dashboard
-<img src="images/dashboard.png" width="250">
-
----
-
-## 💳 Transaksi
-
-| Pilih Produk | Keranjang | Pembayaran |
+| Admin | Kasir | Manajer |
 |--------------|------------|------------|
-| <img src="images/tran.png" width="220"> | <img src="images/sak.png" width="220"> | <img src="images/si.png" width="220"> |
+| <img src="images/admin.png" width="220"> | <img src="images/kasir.png" width="220"> | <img src="images/manajer.png" width="220"> |
 
 ---
 
-## 📜 Riwayat Transaksi
+### 💳 Transaksi
+
+<img src="images/login.png" width="250">
+
+---
+
+### 📜 Riwayat Transaksi
 
 <img src="images/riwayat.png" width="250">
 
 ---
 
-## 👤 Akun
+### 👤 Akun
 
 <img src="images/akun.png" width="250">
 
 ---
 
-## 📦 Manajemen Produk
+### 📦 Manajemen Produk
 
 | Tambah Produk | Edit Produk | Data Produk |
 |---------------|-------------|-------------|
@@ -54,7 +56,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 🏷️ Manajemen Kategori
+### 🏷️ Manajemen Kategori
 
 | Tambah Kategori | Edit Kategori | Data Kategori |
 |-----------------|---------------|---------------|
@@ -62,7 +64,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 👨‍💼 Manajemen Pegawai
+### 👨‍💼 Manajemen Pegawai
 
 | Tambah Pegawai | Edit Pegawai | Data Pegawai |
 |---------------|-------------|-------------|
@@ -70,7 +72,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 🏢 Manajemen Cabang
+### 🏢 Manajemen Cabang
 
 | Tambah Cabang | Edit Cabang | Data Cabang |
 |--------------|------------|------------|
@@ -78,7 +80,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 🖨️ Nota Printer
+### 🖨️ Nota Printer
 
 <img src="images/nota.png" width="250">
 
@@ -102,8 +104,9 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 ```text
 Firebase Realtime Database
 │
-├── users
+├── akun
 │   └── userId
+│       ├── foto
 │       ├── uid
 │       ├── nama
 │       ├── email
@@ -111,13 +114,18 @@ Firebase Realtime Database
 │
 ├── produk
 │   └── produkId
+│       ├── createAt
 │       ├── foto
 │       ├── namaProduk
+│       ├── idCabang
+│       ├── idKategori
+│       ├── cabang
 │       ├── harga
 │       ├── status
 │       ├── kategori
 │       ├── cabang
-│       └── stok
+│       ├── stok
+│       └── updateAt
 │
 ├── kategori
 │   └── kategoriId
@@ -139,8 +147,19 @@ Firebase Realtime Database
 │
 └── transaksi
     └── transaksiId
-        ├── pilihCabang
-        ├── tambahProduk
+        ├── alamatCabang
+        ├── cabang
+        ├── item
+             └── idProduk
+                 ├── hargaProduk
+                 ├── namaProduk
+                 ├── qty
+                 ├── subtotal
+        ├── jam
+        ├── kasir
+        ├── tanggal
+        ├── total
+        ├── alamatCabang
         ├── pembayaran
         └── nota
 
