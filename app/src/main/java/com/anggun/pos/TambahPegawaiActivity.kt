@@ -78,7 +78,7 @@ class TambahPegawaiActivity : AppCompatActivity() {
     }
 
     private fun setupRoleDropdown() {
-        val roles = arrayOf("Admin", "Kasir", "Manajer")
+        val roles = arrayOf("Kasir", "Manajer")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, roles)
         actvRole.setAdapter(adapter)
     }

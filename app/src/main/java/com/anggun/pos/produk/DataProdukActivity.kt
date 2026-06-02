@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,7 +67,7 @@ class DataProdukActivity : AppCompatActivity() {
             adapter.setOnItemClickListener(object : ProdukAdapter.OnItemClickListener {
                 override fun onItemClick(produk: com.anggun.pos.model.ModelProduk) {
                     val options = arrayOf("Edit", "Hapus")
-                    androidx.appcompat.app.AlertDialog.Builder(this@DataProdukActivity)
+                    AlertDialog.Builder(this@DataProdukActivity)
                         .setTitle("Pilih Aksi")
                         .setItems(options) { _, which ->
                             when (which) {
@@ -75,12 +77,12 @@ class DataProdukActivity : AppCompatActivity() {
                                     startActivity(intent)
                                 }
                                 1 -> { // Hapus
-                                    androidx.appcompat.app.AlertDialog.Builder(this@DataProdukActivity)
+                                    AlertDialog.Builder(this@DataProdukActivity)
                                         .setTitle("Hapus Produk")
                                         .setMessage("Apakah Anda yakin ingin menghapus ${produk.namaProduk}?")
                                         .setPositiveButton("Ya") { _, _ ->
                                             viewModel.hapusProduk(produk.idProduk!!)
-                                            android.widget.Toast.makeText(this@DataProdukActivity, "Produk dihapus", android.widget.Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@DataProdukActivity, "Produk dihapus", Toast.LENGTH_SHORT).show()
                                         }
                                         .setNegativeButton("Tidak", null)
                                         .show()

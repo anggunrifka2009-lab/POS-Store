@@ -54,6 +54,29 @@ class MainActivity : AppCompatActivity() {
         val cvCabang: MaterialCardView = findViewById(R.id.cvCabang)
         val cvPrinter: MaterialCardView = findViewById(R.id.cvPrinter)
 
+        val shared = getSharedPreferences("LOGIN", MODE_PRIVATE)
+        val role = shared.getString("role", "Admin")
+
+        if (role == "Manajer") {
+            // Manajer hanya bisa kelola data, tidak bisa transaksi, riwayat, dan printer
+            llTransaksi.visibility = android.view.View.GONE
+            llRiwayat.visibility = android.view.View.GONE
+            cvPrinter.visibility = android.view.View.GONE
+            
+            val parent1 = llTransaksi.parent
+            val parent2 = parent1?.parent
+            val cardAtas = parent2?.parent as? MaterialCardView
+            cardAtas?.visibility = android.view.View.GONE
+        } else if (role == "Kasir") {
+            // Kasir tidak bisa produk, kategori, cabang, dan pegawai
+            cvProduk.visibility = android.view.View.GONE
+            cvKategori.visibility = android.view.View.GONE
+            cvCabang.visibility = android.view.View.GONE
+            cvPegawai.visibility = android.view.View.GONE
+        } else if (role == "Admin") {
+            // Admin (Owner) bisa melihat dan mengelola semuanya
+        }
+
         setupSapaanOtomatis(tvSapaan)
         setupTanggalOtomatis(tvTanggal)
         updateEstimasiHariIni()
@@ -132,6 +155,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateEstimasiHariIni() {
         val today = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        val shared = getSharedPreferences("LOGIN", MODE_PRIVATE)
+        val role = shared.getString("role", "Admin")
+        val myNama = shared.getString("nama", "")
+
         database.child("transaksi").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var totalEstimasi = 0
@@ -139,15 +166,26 @@ class MainActivity : AppCompatActivity() {
                 for (data in snapshot.children) {
                     val tanggal = data.child("tanggal").value?.toString()
                     val total = data.child("total").value?.toString()?.toIntOrNull() ?: 0
+                    val kasir = data.child("kasir").value?.toString()
+
                     if (tanggal == today) {
-                        totalEstimasi += total
-                        jumlahTransaksi++
+                        // Jika Kasir, hanya hitung transaksi miliknya sendiri
+                        // Jika Manajer atau Admin, hitung semua transaksi (Total Toko)
+                        if (role == "Kasir") {
+                            if (kasir == myNama) {
+                                totalEstimasi += total
+                                jumlahTransaksi++
+                            }
+                        } else {
+                            totalEstimasi += total
+                            jumlahTransaksi++
+                        }
                     }
                 }
                 tvEstimasi.text = "Rp ${formatRupiah(totalEstimasi)}"
                 
-                // Update label judul untuk menampilkan jumlah transaksi
-                tvJudulEstimasi?.text = "Estimasi Hari Ini ($jumlahTransaksi Transaksi)"
+                val prefix = if (role == "Kasir") "Estimasi Saya" else "Estimasi Toko"
+                tvJudulEstimasi?.text = "$prefix Hari Ini ($jumlahTransaksi Transaksi)"
             }
             override fun onCancelled(error: DatabaseError) {}
         })

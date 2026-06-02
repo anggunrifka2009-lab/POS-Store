@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -54,17 +55,17 @@ class PegawaiActivity : AppCompatActivity() {
                 override fun onItemClick(pegawai: ModelPegawai) {
                     if (!pegawai.idPegawai.isNullOrBlank()) {
                         val options = arrayOf("Edit", "Hapus")
-                        androidx.appcompat.app.AlertDialog.Builder(this@PegawaiActivity)
+                        AlertDialog.Builder(this@PegawaiActivity)
                             .setTitle("Pilih Aksi")
                             .setItems(options) { _, which ->
                                 when (which) {
-                                    0 -> {
+                                    0 -> { // Edit
                                         val intent = Intent(this@PegawaiActivity, TambahPegawaiActivity::class.java)
                                         intent.putExtra("DATA_PEGAWAI", pegawai)
                                         startActivity(intent)
                                     }
-                                    1 -> {
-                                        androidx.appcompat.app.AlertDialog.Builder(this@PegawaiActivity)
+                                    1 -> { // Hapus
+                                        AlertDialog.Builder(this@PegawaiActivity)
                                             .setTitle("Hapus Pegawai")
                                             .setMessage("Apakah Anda yakin ingin menghapus ${pegawai.nama}?")
                                             .setPositiveButton("Ya") { _, _ ->

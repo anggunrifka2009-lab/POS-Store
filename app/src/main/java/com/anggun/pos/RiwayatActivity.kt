@@ -50,16 +50,27 @@ class RiwayatActivity : AppCompatActivity() {
     }
 
     private fun fetchRiwayatTransaksi() {
+        val shared = getSharedPreferences("LOGIN", MODE_PRIVATE)
+        val role = shared.getString("role", "Admin")
+        val myNama = shared.getString("nama", "")
+
         database.child("transaksi").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listRiwayat.clear()
                 for (data in snapshot.children) {
                     val riwayat = data.getValue(ModelRiwayat::class.java)
                     if (riwayat != null) {
-                        listRiwayat.add(riwayat)
+
+                        if (role == "Kasir") {
+                            if (riwayat.kasir == myNama) {
+                                listRiwayat.add(riwayat)
+                            }
+                        } else {
+                            listRiwayat.add(riwayat)
+                        }
                     }
                 }
-                listRiwayat.reverse() // Terbaru di atas
+                listRiwayat.reverse()
                 adapterRiwayat.notifyDataSetChanged()
             }
 
@@ -72,7 +83,6 @@ class RiwayatActivity : AppCompatActivity() {
     private fun showNota(riwayat: ModelRiwayat) {
         val idTransaksi = riwayat.idTransaksi ?: return
         
-        // Ambil data items untuk nota
         database.child("transaksi").child(idTransaksi).child("items")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

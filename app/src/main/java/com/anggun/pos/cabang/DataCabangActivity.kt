@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -59,17 +60,17 @@ class DataCabangActivity : AppCompatActivity() {
                 override fun onItemClick(cabang: ModelCabang) {
                     if (!cabang.idcabang.isNullOrBlank()) {
                         val options = arrayOf("Edit", "Hapus")
-                        androidx.appcompat.app.AlertDialog.Builder(this@DataCabangActivity)
+                        AlertDialog.Builder(this@DataCabangActivity)
                             .setTitle("Pilih Aksi")
                             .setItems(options) { _, which ->
                                 when (which) {
-                                    0 -> {
+                                    0 -> { // Edit
                                         val intent = Intent(this@DataCabangActivity, ModCabangActivity::class.java)
                                         intent.putExtra("DATA_CABANG", cabang)
                                         startActivity(intent)
                                     }
-                                    1 -> {
-                                        androidx.appcompat.app.AlertDialog.Builder(this@DataCabangActivity)
+                                    1 -> { // Hapus
+                                        AlertDialog.Builder(this@DataCabangActivity)
                                             .setTitle("Hapus Cabang")
                                             .setMessage("Apakah Anda yakin ingin menghapus ${cabang.namaCabang}?")
                                             .setPositiveButton("Ya") { _, _ ->

@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -54,7 +55,7 @@ class DataKategoriActivity : AppCompatActivity() {
                 override fun onItemClick(kategori: ModelKategori) {
                     if (!kategori.idkategori.isNullOrBlank()) {
                         val options = arrayOf("Edit", "Hapus")
-                        androidx.appcompat.app.AlertDialog.Builder(this@DataKategoriActivity)
+                        AlertDialog.Builder(this@DataKategoriActivity)
                             .setTitle("Pilih Aksi")
                             .setItems(options) { _, which ->
                                 when (which) {
@@ -64,7 +65,7 @@ class DataKategoriActivity : AppCompatActivity() {
                                         startActivity(intent)
                                     }
                                     1 -> { // Hapus
-                                        androidx.appcompat.app.AlertDialog.Builder(this@DataKategoriActivity)
+                                        AlertDialog.Builder(this@DataKategoriActivity)
                                             .setTitle("Hapus Kategori")
                                             .setMessage("Apakah Anda yakin ingin menghapus ${kategori.namaKategori}?")
                                             .setPositiveButton("Ya") { _, _ ->
