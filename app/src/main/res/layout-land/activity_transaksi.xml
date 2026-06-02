@@ -61,7 +61,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.2"
+            android:layout_weight="1.4"
             android:orientation="vertical">
 
             <LinearLayout
@@ -84,35 +84,61 @@
                         android:id="@+id/spCabang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Pilih Cabang"
+                        android:hint="Cabang"
                         android:inputType="none"
                         android:textColor="?attr/color"
-                        android:textSize="14sp"
+                        android:textSize="13sp"
                         android:padding="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="1dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeColor="?attr/colorOnBackground"
+                    app:hintTextColor="?attr/colorOnBackground">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spKategori"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kategori"
+                        android:inputType="none"
+                        android:textColor="?attr/color"
+                        android:textSize="13sp"
+                        android:padding="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="1dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
+                    android:layout_weight="1.2"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="1dp"
                     app:cardBackgroundColor="?attr/colorSurface"
-                    app:strokeWidth="0.5dp"
+                    app:strokeWidth="1dp"
                     app:strokeColor="#DDDDDD">
 
                     <EditText
                         android:id="@+id/etCariProduk"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="48dp"
                         android:background="@android:color/transparent"
                         android:hint="Cari produk..."
                         android:importantForAutofill="no"
                         android:gravity="center_vertical"
                         android:paddingHorizontal="12dp"
                         android:inputType="text"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -130,7 +156,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
+            android:layout_weight="0.6"
             android:layout_margin="12dp"
             app:cardCornerRadius="16dp"
             android:backgroundTint="?attr/colorSurface"
@@ -167,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Total"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -175,7 +201,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rp. 0"
-                            android:textSize="18sp"
+                            android:textSize="17sp"
                             android:textStyle="bold"
                             android:textColor="#6D4C41"/>
 
@@ -184,10 +210,10 @@
                     <EditText
                         android:id="@+id/etBayar"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="12dp"
                         android:background="?attr/colorSurface"
-                        android:hint="Masukkan pembayaran"
+                        android:hint="Pembayaran"
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:paddingHorizontal="12dp"

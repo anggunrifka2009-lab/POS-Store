@@ -141,6 +141,7 @@ class ModProdukActivity : AppCompatActivity() {
         val cabangRef = FirebaseDatabase.getInstance().getReference("cabang")
         cabangRef.get().addOnSuccessListener { snapshot ->
             val listCabang = ArrayList<String>()
+            listCabang.add("Semua Cabang") // Tambahkan opsi Semua Cabang
             for (data in snapshot.children) {
                 val namaCabang = data.child("namaCabang").value?.toString()
                     ?: data.child("nama").value?.toString()

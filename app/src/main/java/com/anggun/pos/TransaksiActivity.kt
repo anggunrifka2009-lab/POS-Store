@@ -38,6 +38,7 @@ class TransaksiActivity : AppCompatActivity() {
     private lateinit var tvSubJudul: TextView
     private lateinit var btnCheckout: Button
     private lateinit var spCabang: AutoCompleteTextView
+    private lateinit var spKategori: AutoCompleteTextView
     private lateinit var ivKembali: ImageView
 
     private lateinit var database: DatabaseReference
@@ -45,11 +46,13 @@ class TransaksiActivity : AppCompatActivity() {
     private var totalBelanja = 0
     private var namaKasir = ""
     private var selectedCabang = ""
+    private var selectedKategori = "Semua Kategori"
     private var selectedAlamatCabang = ""
 
     private val listProduk = ArrayList<ModelTransaksi>()
     private val listProdukFull = ArrayList<ModelTransaksi>()
     private val listCabang = ArrayList<String>()
+    private val listKategori = ArrayList<String>()
     private val listModelCabang = ArrayList<ModelCabang>()
 
     private lateinit var adapter: TransaksiAdapter
@@ -65,8 +68,9 @@ class TransaksiActivity : AppCompatActivity() {
         tvTotal = findViewById(R.id.tvTotal)
         tvSubJudul = findViewById(R.id.tvSubJudul)
         btnCheckout = findViewById(R.id.btnCheckout)
-        spCabang = findViewById<AutoCompleteTextView>(R.id.spCabang)
-        ivKembali = findViewById<ImageView>(R.id.ivKembali)
+        spCabang = findViewById(R.id.spCabang)
+        spKategori = findViewById(R.id.spKategori)
+        ivKembali = findViewById(R.id.ivKembali)
 
         database = FirebaseDatabase.getInstance().reference
 
@@ -105,6 +109,7 @@ class TransaksiActivity : AppCompatActivity() {
 
         loadProduk()
         loadCabang()
+        loadKategori()
 
         etCariProduk.addTextChangedListener { s ->
             filterProduk(s.toString())
@@ -173,6 +178,35 @@ class TransaksiActivity : AppCompatActivity() {
             val modelTerpilih = listModelCabang[position]
             selectedAlamatCabang = modelTerpilih.alamatCabang ?: "Alamat tidak diatur"
             tvSubJudul.text = selectedAlamatCabang
+            filterProduk(etCariProduk.text.toString())
+        }
+    }
+
+    private fun loadKategori() {
+        database.child("kategori").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listKategori.clear()
+                listKategori.add("Semua Kategori")
+                for (data in snapshot.children) {
+                    val nama = data.child("namaKategori").value?.toString()
+                    val status = data.child("status").value?.toString()
+                    if (nama != null && status == "Aktif") {
+                        listKategori.add(nama)
+                    }
+                }
+                val adapterKategori = ArrayAdapter(this@TransaksiActivity, android.R.layout.simple_list_item_1, listKategori)
+                spKategori.setAdapter(adapterKategori)
+                spKategori.setText(listKategori[0], false)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@TransaksiActivity, "Gagal memuat kategori", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        spKategori.setOnItemClickListener { _, _, position, _ ->
+            selectedKategori = listKategori[position]
+            filterProduk(etCariProduk.text.toString())
         }
     }
 
@@ -202,12 +236,18 @@ class TransaksiActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun filterProduk(query: String) {
-        val filteredList = if (query.isEmpty()) {
-            listProdukFull
-        } else {
-            listProdukFull.filter {
-                it.namaProduk?.lowercase()?.contains(query.lowercase()) == true
-            }
+        if (selectedCabang.isEmpty()) {
+            listProduk.clear()
+            adapter.notifyDataSetChanged()
+            return
+        }
+
+        val filteredList = listProdukFull.filter {
+            val matchesQuery = it.namaProduk?.lowercase()?.contains(query.lowercase()) == true
+            val matchesCabang = it.idCabang == selectedCabang || it.idCabang == "Semua Cabang"
+            val matchesKategori = selectedKategori == "Semua Kategori" || it.idKategori == selectedKategori
+            
+            matchesQuery && matchesCabang && matchesKategori
         }
         listProduk.clear()
         listProduk.addAll(filteredList)

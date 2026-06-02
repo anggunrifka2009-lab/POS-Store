@@ -6,5 +6,7 @@ data class ModelTransaksi(
     var hargaProduk: Int? = 0,
     var stokProduk: Int? = 0,
     var tanpaBatas: Boolean? = false,
+    var idKategori: String? = "",
+    var idCabang: String? = "",
     var qty: Int = 0
 )
