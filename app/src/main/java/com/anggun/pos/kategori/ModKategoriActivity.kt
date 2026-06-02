@@ -23,8 +23,10 @@ class ModKategoriActivity : AppCompatActivity() {
 
     private lateinit var etNamaKategori: TextInputEditText
     private lateinit var actvStatusKategori: AutoCompleteTextView
-    private lateinit var btnSimpan: MaterialButton
+    private lateinit var btnSimpan: android.widget.Button
     private lateinit var ivKembali: ImageView
+    private lateinit var tvJudul: android.widget.TextView
+    private lateinit var tvJudulAtas: android.widget.TextView
 
     private var idKategoriTerpilih: String? = null
 
@@ -62,6 +64,8 @@ class ModKategoriActivity : AppCompatActivity() {
         actvStatusKategori = findViewById(R.id.actvStatusKategori)
         btnSimpan = findViewById(R.id.btnSimpan)
         ivKembali = findViewById(R.id.ivKembali)
+        tvJudul = findViewById(R.id.tvJudul)
+        tvJudulAtas = findViewById(R.id.tvJudulAtas)
     }
 
     private fun setupDropdown() {
@@ -74,6 +78,8 @@ class ModKategoriActivity : AppCompatActivity() {
         idKategoriTerpilih = kategori.idkategori
         etNamaKategori.setText(kategori.namaKategori)
         actvStatusKategori.setText(kategori.status, false)
+        tvJudul.text = "Ubah Kategori"
+        tvJudulAtas.text = "Ubah Kategori"
         btnSimpan.text = "Perbarui"
     }
 
