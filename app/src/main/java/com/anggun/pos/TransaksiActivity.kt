@@ -202,7 +202,6 @@ class TransaksiActivity : AppCompatActivity() {
                 val adapterKategori = ArrayAdapter(this@TransaksiActivity, android.R.layout.simple_list_item_1, listKategori)
                 spKategori.setAdapter(adapterKategori)
                 
-                // Jika kategori yang sedang terpilih tiba-tiba tidak aktif, reset ke "Semua Kategori"
                 if (!listKategori.contains(selectedKategori)) {
                     selectedKategori = "Semua Kategori"
                     spKategori.setText("Semua Kategori", false)
