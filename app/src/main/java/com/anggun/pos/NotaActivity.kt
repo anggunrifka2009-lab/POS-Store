@@ -55,7 +55,7 @@ class NotaActivity : AppCompatActivity() {
         val formatter = NumberFormat.getInstance(Locale("id", "ID"))
 
         val nota = """
-[C]<b>${cabang.uppercase()}</b>
+[C]<b>POS STORE</b>
 [C]$alamatCabang
 [C]--------------------------------
 [L]Kasir   : $kasir
@@ -148,7 +148,7 @@ Kembali : Rp ${formatter.format(kembali)}
                     val printer = EscPosPrinter(connection, 203, 58f, 32)
 
                     val sb = StringBuilder()
-                    sb.append("[C]<b>${cabang.uppercase()}</b>\n")
+                    sb.append("[C]<b>POS STORE</b>\n")
                     sb.append("[C]$alamatCabang\n")
                     sb.append("[C]--------------------------------\n")
                     sb.append("[L]Kasir   : $kasir\n")
