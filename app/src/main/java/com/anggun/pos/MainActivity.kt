@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         val role = shared.getString("role", "Admin")
 
         if (role == "Manajer") {
-            // Manajer hanya bisa kelola data, tidak bisa transaksi, riwayat, dan printer
             llTransaksi.visibility = android.view.View.GONE
             llRiwayat.visibility = android.view.View.GONE
             cvPrinter.visibility = android.view.View.GONE
@@ -68,13 +67,11 @@ class MainActivity : AppCompatActivity() {
             val cardAtas = parent2?.parent as? MaterialCardView
             cardAtas?.visibility = android.view.View.GONE
         } else if (role == "Kasir") {
-            // Kasir tidak bisa produk, kategori, cabang, dan pegawai
             cvProduk.visibility = android.view.View.GONE
             cvKategori.visibility = android.view.View.GONE
             cvCabang.visibility = android.view.View.GONE
             cvPegawai.visibility = android.view.View.GONE
         } else if (role == "Admin") {
-            // Admin (Owner) bisa melihat dan mengelola semuanya
         }
 
         setupSapaanOtomatis(tvSapaan)
@@ -184,7 +181,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 tvEstimasi.text = "Rp ${formatRupiah(totalEstimasi)}"
                 
-                val prefix = if (role == "Kasir") "Estimasi Saya" else "Estimasi Toko"
+                val prefix = if (role == "Kasir") "Estimasi" else "Estimasi"
                 tvJudulEstimasi?.text = "$prefix Hari Ini ($jumlahTransaksi Transaksi)"
             }
             override fun onCancelled(error: DatabaseError) {}
