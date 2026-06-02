@@ -35,7 +35,6 @@ class TransaksiActivity : AppCompatActivity() {
     private lateinit var etBayar: EditText
     private lateinit var etCariProduk: EditText
     private lateinit var tvTotal: TextView
-    private lateinit var tvSubJudul: TextView
     private lateinit var btnCheckout: Button
     private lateinit var spCabang: AutoCompleteTextView
     private lateinit var spKategori: AutoCompleteTextView
@@ -66,7 +65,6 @@ class TransaksiActivity : AppCompatActivity() {
         etBayar = findViewById(R.id.etBayar)
         etCariProduk = findViewById(R.id.etCariProduk)
         tvTotal = findViewById(R.id.tvTotal)
-        tvSubJudul = findViewById(R.id.tvSubJudul)
         btnCheckout = findViewById(R.id.btnCheckout)
         spCabang = findViewById(R.id.spCabang)
         spKategori = findViewById(R.id.spKategori)
@@ -172,7 +170,6 @@ class TransaksiActivity : AppCompatActivity() {
                     selectedCabang = ""
                     selectedAlamatCabang = ""
                     spCabang.setText("", false)
-                    tvSubJudul.text = "PointOfSales"
                     filterProduk(etCariProduk.text.toString())
                 }
             }
@@ -186,7 +183,6 @@ class TransaksiActivity : AppCompatActivity() {
             selectedCabang = listCabang[position]
             val modelTerpilih = listModelCabang[position]
             selectedAlamatCabang = modelTerpilih.alamatCabang ?: "Alamat tidak diatur"
-            tvSubJudul.text = selectedAlamatCabang
             filterProduk(etCariProduk.text.toString())
         }
     }

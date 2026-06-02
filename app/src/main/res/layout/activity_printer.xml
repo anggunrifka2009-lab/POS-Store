@@ -12,162 +12,173 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#795548"
-        android:gravity="center_vertical">
+        android:background="#795548">
 
         <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginVertical="14dp"
-        android:layout_marginStart="13dp"
-        android:src="@drawable/img_3"
-        app:tint="#D2B48C"
-        android:contentDescription="Kembali" />
+            android:id="@+id/btnBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginVertical="14dp"
+            android:layout_marginStart="13dp"
+            android:src="@drawable/img_3"
+            app:tint="#D2B48C"
+            android:contentDescription="Kembali" />
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginEnd="48dp"
-            android:text="Pengaturan Printer"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="14dp"
+                android:text="Pengaturan Printer"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:fillViewport="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Printer Terhubung"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#6D4C41"
-            android:layout_marginBottom="10dp"/>
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:strokeWidth="0dp"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Printer Terhubung"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#6D4C41"
+                android:layout_marginBottom="10dp"/>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical"
-                android:background="?attr/colorSurface">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/ic_printer"
-                    android:padding="10dp"
-                    android:background="@drawable/bg_circle_brown_light"
-                    app:tint="#4E342E"
-                    android:contentDescription="Printer Icon"/>
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp"
+                android:layout_marginBottom="24dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="12dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:background="?attr/colorSurface">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_printer"
+                        android:padding="10dp"
+                        android:background="@drawable/bg_circle_brown_light"
+                        app:tint="#4E342E"
+                        android:contentDescription="Printer Icon"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:id="@+id/tvConnectedDeviceName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tidak Ada"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvConnectedDeviceAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tvConnectedDeviceName"
+                        android:id="@+id/tvConnectionStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tidak Ada"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvConnectedDeviceAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
+                        android:text="OFF"
                         android:textSize="12sp"
-                        android:textColor="#757575"/>
+                        android:textStyle="bold"
+                        android:textColor="#D32F2F"/>
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvConnectionStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="OFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="#D32F2F"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Perangkat"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#6D4C41"
+                android:layout_marginBottom="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih Perangkat"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#6D4C41"
-            android:layout_marginBottom="10dp"/>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:strokeWidth="0dp">
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:background="?attr/colorSurface">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp">
 
-                <Button
-                    android:id="@+id/btnRefreshDevices"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Cari Perangkat"
-                    android:textAllCaps="false"
-                    android:backgroundTint="#6D4C41"
-                    android:textColor="@android:color/white"
-                    app:cornerRadius="8dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="?attr/colorSurface">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvBluetoothDevices"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/item_device_bluetooth"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <Button
+                        android:id="@+id/btnRefreshDevices"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Cari Perangkat"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#6D4C41"
+                        android:textColor="@android:color/white"
+                        app:cornerRadius="8dp"
+                        android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btnTestPrint"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="Cetak Test Struk"
-            android:textAllCaps="false"
-            android:backgroundTint="#4E342E"
-            android:textColor="@android:color/white"
-            app:cornerRadius="8dp"
-            android:enabled="false"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvBluetoothDevices"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_device_bluetooth"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnTestPrint"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Cetak Test Struk"
+                android:textAllCaps="false"
+                android:backgroundTint="#4E342E"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                android:enabled="false"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -10,13 +10,40 @@
     android:background="?attr/colorSurface"
     tools:context=".NotaActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#6D4C41"
-        app:title="Nota Transaksi"
-        app:titleTextColor="@android:color/white" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#795548">
+
+        <ImageView
+            android:id="@+id/ivKembali"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginVertical="14dp"
+            android:layout_marginStart="13dp"
+            android:src="@drawable/img_3"
+            app:tint="#D2B48C"
+            android:contentDescription="Kembali" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="14dp"
+                android:text="Nota Transaksi"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
