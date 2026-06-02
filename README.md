@@ -94,3 +94,55 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 | Firebase Realtime Database | Penyimpanan Data |
 | RecyclerView | Menampilkan Data |
 | Material Design | UI/UX |
+
+---
+
+## 📂 Struktur Database
+
+```text
+Firebase Realtime Database
+│
+├── users
+│   └── userId
+│       ├── uid
+│       ├── nama
+│       ├── email
+│       └── role
+│
+├── produk
+│   └── produkId
+│       ├── foto
+│       ├── namaProduk
+│       ├── harga
+│       ├── status
+│       ├── kategori
+│       ├── cabang
+│       └── stok
+│
+├── kategori
+│   └── kategoriId
+│       ├── namaKategori
+│       └── status
+│
+├── pegawai
+│   └── pegawaiId
+│       ├── foto
+│       ├── nama
+│       ├── alamat
+│       └── role
+│
+├── cabang
+│   └── cabangId
+│       ├── namaCabang
+│       ├── alamat
+│       └── status
+│
+└── transaksi
+    └── transaksiId
+        ├── pilihCabang
+        ├── tambahProduk
+        ├── pembayaran
+        └── nota
+
+```
+
