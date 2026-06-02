@@ -88,22 +88,23 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ## Role Pengguna
 
-### Admin
+### Admin (Owner)
 - Mengelola seluruh data
 - Mengatur pegawai
 - Mengatur cabang
-- Melihat sama transaksi
+- Melihat semua transaksi
+- Melakukan transaksi
 
 ### Kasir
 - Melakukan transaksi
 - Melihat riwayat transaksi
 - Cetak nota
 
-### Manajer
-- Monitoring transaksi
-- Monitoring produk
-- Monitoring pegawai
-
+### Manajer 
+- Mengatur pegawai
+- Mengatur cabang
+- Mengatur kategori
+- Mengatur produk
 ---
 
 ## Teknologi yang Digunakan
