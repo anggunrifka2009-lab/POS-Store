@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pilih Cabang"
                 android:textSize="14sp"
+                android:textColor="?attr/color"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -97,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pilih Kategori"
                 android:textSize="14sp"
+                android:textColor="?attr/color"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -178,6 +180,7 @@
                     android:layout_weight="1"
                     android:text="Total"
                     android:textSize="18sp"
+                    android:textColor="?attr/color"
                     android:textStyle="bold" />
 
                 <TextView
@@ -186,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:text="Rp. 0"
                     android:textSize="20sp"
+                    android:textColor="?attr/color"
                     android:textStyle="bold" />
 
             </LinearLayout>

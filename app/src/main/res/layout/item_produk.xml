@@ -53,6 +53,7 @@
                     android:layout_weight="1"
                     android:text="Seblak"
                     android:textSize="20sp"
+                    android:textColor="?attr/color"
                     android:textStyle="bold"/>
 
                 <com.google.android.material.chip.Chip
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Rp7.000"
                 android:textSize="20sp"
+                android:textColor="?attr/color"
                 android:textStyle="bold"
                 android:layout_marginTop="2dp"/>
 

@@ -38,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:text="#TRX-001"
                 android:textStyle="bold"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="?attr/color"/>
 
             <TextView
                 android:id="@+id/tvWaktu"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="Rp 50.000"
             android:textStyle="bold"
-            android:textColor="#6D4C41"
+            android:textColor="?attr/colorAccent"
             android:textSize="16sp" />
 
     </LinearLayout>
