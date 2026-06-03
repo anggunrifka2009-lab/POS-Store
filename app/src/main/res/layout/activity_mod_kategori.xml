@@ -61,6 +61,7 @@
                 android:text="Tambah Kategori"
                 android:textStyle="bold"
                 android:textSize="24sp"
+                android:textColor="?attr/color"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:layout_margin="20dp"/>

@@ -61,6 +61,7 @@
                 android:text="Tambah Produk"
                 android:textStyle="bold"
                 android:textSize="24sp"
+                android:textColor="?attr/color"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:layout_margin="20dp"/>
@@ -125,6 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:textColor="?attr/color"
                 android:text="Kategori"
                 android:textStyle="bold" />
 
@@ -145,6 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:textColor="?attr/color"
                 android:text="Cabang"
                 android:textStyle="bold" />
 
