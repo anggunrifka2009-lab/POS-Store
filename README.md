@@ -17,34 +17,34 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ### 📝 Registrasi
 
-<img src="images/register.png" width="250">
+<img src="images/register.jpeg" width="250">
 
 ### 🔐 Login
 
-<img src="images/login.png" width="250">
+<img src="images/login.jpeg" width="250">
 
 ### 🏠 Dashboard
 | Admin | Kasir | Manajer |
 |--------------|------------|------------|
-| <img src="images/admin.png" width="220"> | <img src="images/kasir.png" width="220"> | <img src="images/manajer.png" width="220"> |
+| <img src="images/admin.jpeg" width="220"> | <img src="images/kasir.jpeg" width="220"> | <img src="images/manajer.jpeg" width="220"> |
 
 ---
 
 ### 💳 Transaksi
 
-<img src="images/login.png" width="250">
+<img src="images/transaksi.jpeg" width="250">
 
 ---
 
 ### 📜 Riwayat Transaksi
 
-<img src="images/riwayat.png" width="250">
+<img src="images/riwayat.jpeg" width="250">
 
 ---
 
 ### 👤 Akun
 
-<img src="images/akun.png" width="250">
+<img src="images/akun.jpeg" width="250">
 
 ---
 
@@ -52,7 +52,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 | Tambah Produk | Edit Produk | Data Produk |
 |---------------|-------------|-------------|
-| <img src="images/tambah.png" width="220"> | <img src="images/edit.png" width="220"> | <img src="images/data.png" width="220"> |
+| <img src="images/tambah.jpeg" width="220"> | <img src="images/edit.jpeg" width="220"> | <img src="images/data.jpeg" width="220"> |
 
 ---
 
@@ -60,7 +60,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 | Tambah Kategori | Edit Kategori | Data Kategori |
 |-----------------|---------------|---------------|
-| <img src="images/tambah1.png" width="220"> | <img src="images/edit1.png" width="220"> | <img src="images/data1.png" width="220"> |
+| <img src="images/tambah1.jpeg" width="220"> | <img src="images/edit1.jpeg" width="220"> | <img src="images/data1.jpeg" width="220"> |
 
 ---
 
@@ -68,7 +68,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 | Tambah Pegawai | Edit Pegawai | Data Pegawai |
 |---------------|-------------|-------------|
-| <img src="images/tambah2.png" width="220"> | <img src="images/edit2.png" width="220"> | <img src="images/data2.png" width="220"> |
+| <img src="images/tambah2.jpeg" width="220"> | <img src="images/edit2.jpeg" width="220"> | <img src="images/data2.jpeg" width="220"> |
 
 ---
 
@@ -76,13 +76,13 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 | Tambah Cabang | Edit Cabang | Data Cabang |
 |--------------|------------|------------|
-| <img src="images/tambah3.png" width="220"> | <img src="images/edit3.png" width="220"> | <img src="images/data3.png" width="220"> |
+| <img src="images/tambah3.jpeg" width="220"> | <img src="images/edit3.jpeg" width="220"> | <img src="images/data3.jpeg" width="220"> |
 
 ---
 
 ### 🖨️ Nota Printer
 
-<img src="images/nota.png" width="250">
+<img src="images/nota.jpeg" width="250">
 
 ---
 
