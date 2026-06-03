@@ -212,7 +212,7 @@ Data Disimpan ke Firebase
 
 ## 🚀 Cara Menjalankan Project
 
-### 1. Clone Repository
+#### 1. Clone Repository
 
 ```bash
 git clone https://github.com/username/pos-store.git
@@ -220,7 +220,7 @@ git clone https://github.com/username/pos-store.git
 
 ---
 
-### 2. Buka Project di Android Studio
+#### 2. Buka Project di Android Studio
 
 * Buka Android Studio
 * Klik **Open**
@@ -228,9 +228,9 @@ git clone https://github.com/username/pos-store.git
 
 ---
 
-### 3. Hubungkan Firebase
+#### 3. Hubungkan Firebase
 
-### Tambahkan File Firebase
+##### Tambahkan File Firebase
 
 Masukkan file:
 
@@ -244,14 +244,14 @@ ke folder:
 app/
 ```
 
-#### Aktifkan Firebase
+##### Aktifkan Firebase
 
 * Firebase Authentication
 * Firebase Realtime Database
 
 ---
 
-### 4. Tambahkan Dependency
+#### 4. Tambahkan Dependency
 
 ```gradle
 implementation 'com.google.firebase:firebase-auth'
@@ -263,7 +263,7 @@ implementation 'com.github.bumptech.glide:glide:4.16.0'
 
 ---
 
-### 5. Sync Gradle
+#### 5. Sync Gradle
 
 Klik:
 
@@ -273,7 +273,7 @@ Sync Now
 
 ---
 
-### 6. Jalankan Aplikasi
+#### 6. Jalankan Aplikasi
 
 Hubungkan emulator atau HP Android lalu klik:
 
@@ -289,7 +289,7 @@ Shift + F10
 
 ---
 
-### 7. Login Aplikasi
+#### 7. Login Aplikasi
 
 Register akun terlebih dahulu lalu login menggunakan:
 
