@@ -17,7 +17,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ### ✨ Tampilan Autentikasi
 
-|Login | Registrasi|
+|Registrasi | Login|
 |------------|------------|
 |<img src="images/register.jpeg" width="250">|<img src="images/login.jpeg" width="250">|
 
