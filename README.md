@@ -15,15 +15,16 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ## Fitur Utama
 
-### 📝 Registrasi
+### ✨ Tampilan Autentikasi
 
-<img src="images/register.jpeg" width="250">
+|Login | Registrasi|
+|------------|------------|
+|<img src="images/register.jpeg" width="250">|<img src="images/login.jpeg" width="250">|
 
-### 🔐 Login
-
-<img src="images/login.jpeg" width="250">
+---
 
 ### 🏠 Dashboard
+
 | Admin | Kasir | Manajer |
 |--------------|------------|------------|
 | <img src="images/admin.jpeg" width="220"> | <img src="images/kasir.jpeg" width="220"> | <img src="images/manajer.jpeg" width="220"> |
@@ -120,7 +121,7 @@ Aplikasi POS (Point of Sale) adalah aplikasi kasir berbasis Android yang digunak
 
 ---
 
-## 📂 Struktur Database
+## Struktur Database
 
 ```text
 Firebase Realtime Database
@@ -187,7 +188,7 @@ Firebase Realtime Database
 ```
 
 
-## 🔄 Alur Sistem
+## Alur Sistem
 
 ```text
 Register / Login
@@ -210,7 +211,7 @@ Data Disimpan ke Firebase
 ```
 
 
-## 🚀 Cara Menjalankan Project
+## Cara Menjalankan Project
 
 #### 1. Clone Repository
 
