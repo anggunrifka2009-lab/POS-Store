@@ -30,7 +30,6 @@ class TambahPegawaiActivity : AppCompatActivity() {
     private lateinit var tlPassword: TextInputLayout
     private lateinit var actvRole: AutoCompleteTextView
     private lateinit var btnSimpan: Button
-    private lateinit var tvJudul: TextView
     private lateinit var tvJudulAtas: TextView
     private lateinit var ivKembali: ImageView
 
@@ -74,7 +73,6 @@ class TambahPegawaiActivity : AppCompatActivity() {
         tlPassword = findViewById(R.id.tlPasswordPegawai)
         actvRole = findViewById(R.id.actvRolePegawai)
         btnSimpan = findViewById(R.id.btnSimpanPegawai)
-        tvJudul = findViewById(R.id.tvJudul)
         tvJudulAtas = findViewById(R.id.tvJudulAtas)
         ivKembali = findViewById(R.id.ivKembali)
     }
@@ -95,7 +93,6 @@ class TambahPegawaiActivity : AppCompatActivity() {
         tlPassword.visibility = View.GONE
         etEmail.isEnabled = false
         
-        tvJudul.text = "Ubah Pegawai"
         tvJudulAtas.text = "Ubah Pegawai"
         btnSimpan.text = "Perbarui"
 

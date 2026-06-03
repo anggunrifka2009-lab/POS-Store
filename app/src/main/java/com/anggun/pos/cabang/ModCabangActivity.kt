@@ -27,7 +27,6 @@ class ModCabangActivity : AppCompatActivity() {
     private lateinit var actvStatusCabang: AutoCompleteTextView
     private lateinit var btnSimpan: MaterialButton
     private lateinit var ivKembali: ImageView
-    private lateinit var tvJudul: TextView
     private lateinit var tvJudulAtas: TextView
 
     private var idCabangTerpilih: String? = null
@@ -67,7 +66,6 @@ class ModCabangActivity : AppCompatActivity() {
         actvStatusCabang = findViewById(R.id.actvStatusCabang)
         btnSimpan = findViewById(R.id.btnSimpan)
         ivKembali = findViewById(R.id.ivKembali)
-        tvJudul = findViewById(R.id.tvJudul)
         tvJudulAtas = findViewById(R.id.tvJudulAtas)
     }
 
@@ -82,7 +80,6 @@ class ModCabangActivity : AppCompatActivity() {
         etNamaCabang.setText(cabang.namaCabang)
         etAlamatCabang.setText(cabang.alamatCabang)
         actvStatusCabang.setText(cabang.status, false)
-        tvJudul.text = "Ubah Cabang"
         tvJudulAtas.text = "Ubah Cabang"
         btnSimpan.text = "Perbarui"
     }
